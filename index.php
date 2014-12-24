@@ -12,7 +12,9 @@ use OnlyBits\LogicGates\NotGate;
 use OnlyBits\LogicGates\XorGate;
 use OnlyBits\LogicGates\XnorGate;
 
-$or = new OrGate(4);
+use OnlyBits\Connectors\LogicWire;
+
+$or = new OrGate(2);
 $nor = new NorGate(2);
 $and = new AndGate(4);
 $nand = new NandGate(4);
@@ -20,9 +22,20 @@ $not = new NotGate();
 $xor = new XorGate();
 $xnor = new XnorGate();
 
+$lwire = new LogicWire;
+
+var_dump("wire");
+var_dump($lwire);
+$lwire->setValue(true);
+var_dump($lwire);
+
 var_dump("or");
+// $or->connect($lwire, 1);
 $or->in(["1"=>false, "2"=>false]);
 var_dump($or->out());
+var_dump($or);
+$or->connect($lwire);
+var_dump($lwire);
 $or->in(["1"=>false, "2"=>true]);
 var_dump($or->out());
 $or->in(["1"=>true, "2"=>false]);
@@ -30,7 +43,7 @@ var_dump($or->out());
 $or->in(["1"=>true, "2"=>false, "3"=>false, "4"=>false]);
 var_dump($or->out());
 var_dump($or->totalInputs());
-var_dump($or);
+// var_dump($or);
 
 var_dump("nor");
 $nor->in(["1"=>false, "2"=>false]);

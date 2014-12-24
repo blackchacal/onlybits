@@ -2,7 +2,10 @@
 
 namespace OnlyBits\LogicGates;
 
-abstract class LogicGate
+use OnlyBits\Connectors\IConnect;
+use OnlyBits\Connectors\Wire;
+
+abstract class LogicGate implements IConnect
 {
     /**
      * Total number of inputs for the gate.
@@ -85,4 +88,20 @@ abstract class LogicGate
      * @return bool Gate output.
      */
     abstract public function out();
+
+    /**
+     * Connect wires with logic gates.
+     *
+     * {@inheritdoc}
+     */
+    public function connect(Wire $wire, $pin = null)
+    {
+        if (is_null($pin)) {
+            // Connect output to wire
+            $wire->setValue($this->output);
+        } else {
+            // Connect input to wire
+            $this->inputs[strval($pin)] = $wire->getValue();
+        }
+    }
 }
