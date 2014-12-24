@@ -5,7 +5,7 @@ namespace OnlyBits\LogicGates;
 class NorGate extends LogicGate
 {
     /**
-     * @inherit
+     * {@inheritdoc}
      */
     public function out()
     {

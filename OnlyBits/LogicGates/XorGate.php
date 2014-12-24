@@ -10,7 +10,7 @@ class XorGate extends LogicGate
     }
 
     /**
-     * @inherit
+     * {@inheritdoc}
      */
     public function out()
     {

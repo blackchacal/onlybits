@@ -5,7 +5,7 @@ namespace OnlyBits\LogicGates;
 class NandGate extends LogicGate
 {
     /**
-     * @inherit
+     * {@inheritdoc}
      */
     public function out()
     {

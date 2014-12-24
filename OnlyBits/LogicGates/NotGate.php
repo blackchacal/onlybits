@@ -10,7 +10,7 @@ class NotGate extends LogicGate
     }
 
     /**
-     * @inherit
+     * {@inheritdoc}
      */
     public function out()
     {
