@@ -2,19 +2,18 @@
 
 namespace OnlyBits\LogicGates;
 
-class OrGate extends LogicGate
+class NandGate extends LogicGate
 {
     /**
      * @inherit
      */
     public function out()
     {
-        // Natural state
         $this->output = false;
 
         foreach ($this->inputs as $number => $value) {
-            if ($value) {
-                $this->output = $value;
+            if (!$value) {
+                $this->output = !$value;
                 break;
             }
         }

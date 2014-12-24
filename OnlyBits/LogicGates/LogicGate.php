@@ -32,12 +32,16 @@ abstract class LogicGate
     protected $output;
 
 
-    public function __construct()
+    /**
+     * Constructor.
+     * @param int $total_inputs Gate total number of inputs.
+     */
+    public function __construct($total_inputs)
     {
-        $total = $this->total_inputs;
+        $total = $total_inputs;
 
         // Check for correct input number
-        if (!is_int($total) || !($total % 2 === 0)) {
+        if ((!is_int($total) || !($total % 2 === 0) || $total <= 0) && $total !== 1) {
             $total = 2;
         }
 
@@ -45,6 +49,18 @@ abstract class LogicGate
         for ($i=0; $i < $total; $i++) {
             $this->inputs[strval($i+1)] = false;
         }
+
+        $this->total_inputs = $total;
+    }
+
+    /**
+     * Retrieves the total number of inputs of the gate.
+     *
+     * @return int Gate total input number.
+     */
+    public function totalInputs()
+    {
+        return $this->total_inputs;
     }
 
     /**

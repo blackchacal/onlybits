@@ -2,7 +2,7 @@
 
 namespace OnlyBits\LogicGates;
 
-class OrGate extends LogicGate
+class NorGate extends LogicGate
 {
     /**
      * @inherit
@@ -13,8 +13,8 @@ class OrGate extends LogicGate
         $this->output = false;
 
         foreach ($this->inputs as $number => $value) {
-            if ($value) {
-                $this->output = $value;
+            if (!$value) {
+                $this->output = !$value;
                 break;
             }
         }
