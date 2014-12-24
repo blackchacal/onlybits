@@ -66,6 +66,15 @@ abstract class LogicGate implements IConnect
         return $this->total_inputs;
     }
 
+    public function getInput($number)
+    {
+        if ($number < 1 || $number > $this->total_inputs) {
+            $number = "1";
+        }
+
+        return $this->inputs[strval($number)];
+    }
+
     /**
      * Sets the gate inputs. The inputs should have the same format as defined
      * earlier.
