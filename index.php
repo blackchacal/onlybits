@@ -14,13 +14,13 @@ use OnlyBits\LogicGates\XnorGate;
 
 use OnlyBits\Connectors\LogicWire;
 
-$or = new OrGate(2);
-$nor = new NorGate(2);
-$and = new AndGate(4);
-$nand = new NandGate(4);
-$not = new NotGate();
-$xor = new XorGate();
-$xnor = new XnorGate();
+$or = new OrGate;
+$nor = new NorGate;
+$and = new AndGate;
+$nand = new NandGate;
+$not = new NotGate;
+$xor = new XorGate;
+$xnor = new XnorGate;
 
 $lwire = new LogicWire;
 
@@ -40,9 +40,9 @@ $or->in(["1"=>false, "2"=>true]);
 var_dump($or->out());
 $or->in(["1"=>true, "2"=>false]);
 var_dump($or->out());
-$or->in(["1"=>true, "2"=>false, "3"=>false, "4"=>false]);
+$or->in(["1"=>true, "2"=>false]);
 var_dump($or->out());
-var_dump($or->totalInputs());
+var_dump($or->getTotalInputs());
 // var_dump($or);
 
 var_dump("nor");
@@ -62,7 +62,7 @@ $and->in(["1"=>false, "2"=>true]);
 var_dump($and->out());
 $and->in(["1"=>true, "2"=>false]);
 var_dump($and->out());
-$and->in(["1"=>true, "2"=>true, "3"=>false, "4"=>true]);
+$and->in(["1"=>true, "2"=>true]);
 var_dump($and->out());
 
 var_dump("nand");
@@ -72,7 +72,7 @@ $nand->in(["1"=>false, "2"=>true]);
 var_dump($nand->out());
 $nand->in(["1"=>true, "2"=>false]);
 var_dump($nand->out());
-$nand->in(["1"=>true, "2"=>true, "3"=>false, "4"=>true]);
+$nand->in(["1"=>true, "2"=>true]);
 var_dump($nand->out());
 
 var_dump("not");
