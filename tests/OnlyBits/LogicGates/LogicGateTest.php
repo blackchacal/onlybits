@@ -39,37 +39,32 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
             [2],
             [3],
             [4],
-            [5],
-            [6],
-            [7],
-            [8],
-            [9],
-            [10]
+            [5]
         ];
     }
 
     /**
-     * @dataProvider logicGateFourInputProvider
+     * @dataProvider logicGateThreeInputProvider
      */
     public function testLogicGateGetInput($chosen_input, $inputs)
     {
-        $or = new OrGate(4);
-        $or->in(["1"=>$inputs[0], "2"=>$inputs[1], "3"=>$inputs[2], "4"=>$inputs[3]]);
+        $or = new OrGate(3);
+        $or->in(["1"=>$inputs[0], "2"=>$inputs[1], "3"=>$inputs[2]]);
 
         $input = $or->getInput($chosen_input);
 
         $this->assertEquals($input, $inputs[$chosen_input-1], "The logic gate is not returning the proper input value!");
     }
 
-    public function logicGateFourInputProvider()
+    public function logicGateThreeInputProvider()
     {
         return [
-            [1, [true, false, false, true]],
-            [3, [true, false, false, false]],
-            [2, [false, false, false, true]],
-            [1, [true, true, true, true]],
-            [4, [false, false, true, true]],
-            [3, [true, true, false, true]],
+            [1, [true, false, false]],
+            [3, [true, false, false]],
+            [2, [false, false, false]],
+            [1, [true, true, true]],
+            [2, [false, false, true]],
+            [3, [true, true, false]],
         ];
     }
 
@@ -81,7 +76,7 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
         $wire = new LogicWire;
         $wire->setValue($wire_value);
 
-        $or = new OrGate(2);
+        $or = new OrGate;
         $or->connect($wire, 1);
         $input1 = $or->getInput(1);
 
@@ -104,7 +99,7 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
     {
         $wire = new LogicWire;
 
-        $or = new OrGate(2);
+        $or = new OrGate;
         $or->in(["1"=>$input1, "2"=>$input2]);
         $output = $or->out();
         $or->connect($wire);
