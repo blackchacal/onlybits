@@ -9,10 +9,10 @@ class OrGate extends LogicGate
      */
     public function out()
     {
-        // Natural state
         $this->output = false;
 
         foreach ($this->inputs as $number => $value) {
+            // If there's any true input, the output is true
             if ($value) {
                 $this->output = $value;
                 break;

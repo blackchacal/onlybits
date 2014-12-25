@@ -12,6 +12,7 @@ class NandGate extends LogicGate
         $this->output = false;
 
         foreach ($this->inputs as $number => $value) {
+            // If there's a false input, the output is true
             if (!$value) {
                 $this->output = !$value;
                 break;
