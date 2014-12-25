@@ -9,23 +9,24 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider totalInputsProvider
      */
-    public function testTotalInputsIsPair($inputs)
+    public function testTotalInputsIsPositive($inputs)
     {
         $or = new OrGate($inputs);
-        $total_inputs = $or->totalInputs();
+        $total_inputs = $or->getTotalInputs();
 
-        $this->assertEquals(($total_inputs % 2 === 0 && $total_inputs != 1), true, "The logic gate doesn't have a pair number of inputs!");
+        $this->assertEquals(($total_inputs > 0), true, "The logic gate doesn't have a positive number of inputs!");
     }
 
     /**
      * @dataProvider totalInputsProvider
      */
-    public function testTotalInputsIsPositive($inputs)
+    public function testInputListSameSizeTotalInputs($inputs)
     {
         $or = new OrGate($inputs);
-        $total_inputs = $or->totalInputs();
+        $total_inputs = $or->getTotalInputs();
+        $all_inputs = $or->getAllInputs();
 
-        $this->assertEquals(($total_inputs > 0), true, "The logic gate doesn't have a positive number of inputs!");
+        $this->assertCount($total_inputs, $all_inputs, "The input list doesn't have the same size as total inputs!");
     }
 
     public function totalInputsProvider()
@@ -34,6 +35,7 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
             [-2],
             [-1],
             [0],
+            [1],
             [2],
             [3],
             [4],

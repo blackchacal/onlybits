@@ -37,19 +37,19 @@ abstract class LogicGate implements IConnect
 
     /**
      * Constructor.
-     * @param int $total_inputs Gate total number of inputs.
+     * @param int $number_inputs Gate total number of inputs.
      */
-    public function __construct($total_inputs)
+    public function __construct($number_inputs)
     {
-        $total = $total_inputs;
+        $total = intval($number_inputs);
 
         // Check for correct input number
-        if ((!is_int($total) || !($total % 2 === 0) || $total <= 0) && $total !== 1) {
+        if (!is_numeric($total) || $total <= 0) {
             $total = 2;
         }
 
         // Initialize all the inputs to false.
-        for ($i=0; $i < $total; $i++) {
+        for ($i = 0; $i < $total; $i++) {
             $this->inputs[strval($i+1)] = false;
         }
 
@@ -61,19 +61,38 @@ abstract class LogicGate implements IConnect
      *
      * @return int Gate total input number.
      */
-    public function totalInputs()
+    public function getTotalInputs()
     {
         return $this->total_inputs;
     }
 
+    /**
+     * Retrivies the inputs array.
+     *
+     * @return array Inputs list.
+     */
+    public function getAllInputs()
+    {
+        return $this->inputs;
+    }
+
+    /**
+     * Retrives the input value according to input number.
+     *
+     * @param  int $number Input number.
+     * @return bool        Input value.
+     */
     public function getInput($number)
     {
+        $number = intval($number);
+
         if ($number < 1 || $number > $this->total_inputs) {
             $number = "1";
         }
 
         return $this->inputs[strval($number)];
     }
+
 
     /**
      * Sets the gate inputs. The inputs should have the same format as defined
