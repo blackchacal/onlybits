@@ -7,6 +7,18 @@ class OrGate extends LogicGate
     /**
      * {@inheritdoc}
      */
+    public function __construct($number_inputs = 2)
+    {
+        // OR gates can have 2 or 3 inputs
+        $total = intval($number_inputs);
+        $total = ($total != 3) ? 2 : 3;
+
+        parent::__construct($total);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function out()
     {
         $this->output = false;

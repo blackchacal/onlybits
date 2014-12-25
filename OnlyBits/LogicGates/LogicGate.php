@@ -37,6 +37,7 @@ abstract class LogicGate implements IConnect
 
     /**
      * Constructor.
+     *
      * @param int $number_inputs Gate total number of inputs.
      */
     public function __construct($number_inputs)

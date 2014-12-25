@@ -4,6 +4,11 @@ namespace OnlyBits\LogicGates;
 
 class NandGate extends LogicGate
 {
+    public function __construct()
+    {
+        parent::__construct(2);
+    }
+
     /**
      * {@inheritdoc}
      */
