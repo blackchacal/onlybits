@@ -13,7 +13,7 @@ class XnorGateTest extends PHPUnit_Framework_TestCase
         $xnor->in($inputs);
         $output = $xnor->out();
 
-        $this->assertEquals($output, $out, "The XOR gate output doesn't respect the truth table!");
+        $this->assertEquals($output, $out, "The XNOR gate output doesn't respect the truth table!");
     }
 
     public function logicGateTwoInputProvider()
