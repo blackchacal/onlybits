@@ -1,15 +1,15 @@
 <?php
 
-use OnlyBits\LogicGates\NotGate;
+use OnlyBits\LogicGates\NOTGate;
 
-class NotGateTest extends PHPUnit_Framework_TestCase
+class NOTGateTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider logicGateOneInputProvider
      */
-    public function testOutputRespectsNotGateTruthTable($inputs, $out)
+    public function testOutputRespectsNOTGateTruthTable($inputs, $out)
     {
-        $not = new NotGate;
+        $not = new NOTGate;
         $not->in($inputs);
         $output = $not->out();
 

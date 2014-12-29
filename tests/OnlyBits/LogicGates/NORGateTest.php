@@ -1,15 +1,15 @@
 <?php
 
-use OnlyBits\LogicGates\NorGate;
+use OnlyBits\LogicGates\NORGate;
 
-class NorGateTest extends PHPUnit_Framework_TestCase
+class NORGateTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider logicGateTwoInputProvider
      */
-    public function testOutputRespectsNorGateTruthTable($inputs, $out)
+    public function testOutputRespectsNORGateTruthTable($inputs, $out)
     {
-        $nor = new NorGate;
+        $nor = new NORGate;
         $nor->in($inputs);
         $output = $nor->out();
 

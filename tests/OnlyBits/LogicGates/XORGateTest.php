@@ -1,15 +1,15 @@
 <?php
 
-use OnlyBits\LogicGates\XorGate;
+use OnlyBits\LogicGates\XORGate;
 
-class XorGateTest extends PHPUnit_Framework_TestCase
+class XORGateTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider logicGateTwoInputProvider
      */
-    public function testOutputRespectsXorGateTruthTable($inputs, $out)
+    public function testOutputRespectsXORGateTruthTable($inputs, $out)
     {
-        $xor = new XorGate;
+        $xor = new XORGate;
         $xor->in($inputs);
         $output = $xor->out();
 

@@ -2,7 +2,7 @@
 
 namespace OnlyBits\LogicGates;
 
-class OrGate extends LogicGate
+class ORGate extends LogicGate
 {
     /**
      * {@inheritdoc}

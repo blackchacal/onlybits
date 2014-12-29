@@ -1,15 +1,15 @@
 <?php
 
-use OnlyBits\LogicGates\OrGate;
+use OnlyBits\LogicGates\ORGate;
 
-class OrGateTest extends PHPUnit_Framework_TestCase
+class ORGateTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider logicGateTwoInputProvider
      */
-    public function testOutputRespectsOrGateTruthTable($inputs, $out)
+    public function testOutputRespectsORGateTruthTable($inputs, $out)
     {
-        $or = new OrGate;
+        $or = new ORGate;
         $or->in($inputs);
         $output = $or->out();
 

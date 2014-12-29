@@ -2,11 +2,11 @@
 
 namespace OnlyBits\LogicGates;
 
-class XnorGate extends LogicGate
+class NOTGate extends LogicGate
 {
     public function __construct()
     {
-        parent::__construct(2);
+        parent::__construct(1);
     }
 
     /**
@@ -14,10 +14,7 @@ class XnorGate extends LogicGate
      */
     public function out()
     {
-        $input1 = $this->inputs["1"];
-        $input2 = $this->inputs["2"];
-
-        $this->output = !($input1 xor $input2);
+        $this->output = !$this->inputs["1"];
 
         return $this->output;
     }

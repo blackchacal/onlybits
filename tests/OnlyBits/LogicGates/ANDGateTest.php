@@ -1,15 +1,15 @@
 <?php
 
-use OnlyBits\LogicGates\AndGate;
+use OnlyBits\LogicGates\ANDGate;
 
-class AndGateTest extends PHPUnit_Framework_TestCase
+class ANDGateTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider logicGateTwoInputProvider
      */
-    public function testOutputRespectsAndGateTruthTable($inputs, $out)
+    public function testOutputRespectsANDGateTruthTable($inputs, $out)
     {
-        $and = new AndGate;
+        $and = new ANDGate;
         $and->in($inputs);
         $output = $and->out();
 

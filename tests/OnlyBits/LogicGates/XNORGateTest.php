@@ -1,15 +1,15 @@
 <?php
 
-use OnlyBits\LogicGates\XnorGate;
+use OnlyBits\LogicGates\XNORGate;
 
-class XnorGateTest extends PHPUnit_Framework_TestCase
+class XNORGateTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider logicGateTwoInputProvider
      */
-    public function testOutputRespectsXnorGateTruthTable($inputs, $out)
+    public function testOutputRespectsXNORGateTruthTable($inputs, $out)
     {
-        $xnor = new XnorGate;
+        $xnor = new XNORGate;
         $xnor->in($inputs);
         $output = $xnor->out();
 

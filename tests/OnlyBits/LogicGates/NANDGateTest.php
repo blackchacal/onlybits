@@ -1,15 +1,15 @@
 <?php
 
-use OnlyBits\LogicGates\NandGate;
+use OnlyBits\LogicGates\NANDGate;
 
-class NandGateTest extends PHPUnit_Framework_TestCase
+class NANDGateTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider logicGateTwoInputProvider
      */
-    public function testOutputRespectsNandGateTruthTable($inputs, $out)
+    public function testOutputRespectsNANDGateTruthTable($inputs, $out)
     {
-        $nand = new NandGate;
+        $nand = new NANDGate;
         $nand->in($inputs);
         $output = $nand->out();
 

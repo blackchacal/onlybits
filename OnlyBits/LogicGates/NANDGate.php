@@ -2,7 +2,7 @@
 
 namespace OnlyBits\LogicGates;
 
-class NandGate extends LogicGate
+class NANDGate extends LogicGate
 {
     public function __construct()
     {

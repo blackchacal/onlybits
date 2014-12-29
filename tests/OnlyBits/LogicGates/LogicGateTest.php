@@ -1,6 +1,6 @@
 <?php
 
-use OnlyBits\LogicGates\OrGate;
+use OnlyBits\LogicGates\ORGate;
 
 use OnlyBits\Connectors\LogicWire;
 
@@ -11,7 +11,7 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
      */
     public function testTotalInputsIsPositive($inputs)
     {
-        $or = new OrGate($inputs);
+        $or = new ORGate($inputs);
         $total_inputs = $or->getTotalInputs();
 
         $this->assertEquals(($total_inputs > 0), true, "The logic gate doesn't have a positive number of inputs!");
@@ -22,7 +22,7 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
      */
     public function testInputListSameSizeTotalInputs($inputs)
     {
-        $or = new OrGate($inputs);
+        $or = new ORGate($inputs);
         $total_inputs = $or->getTotalInputs();
         $all_inputs = $or->getAllInputs();
 
@@ -48,7 +48,7 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
      */
     public function testLogicGateGetInput($chosen_input, $inputs)
     {
-        $or = new OrGate(3);
+        $or = new ORGate(3);
         $or->in(["1"=>$inputs[0], "2"=>$inputs[1], "3"=>$inputs[2]]);
 
         $input = $or->getInput($chosen_input);
@@ -76,7 +76,7 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
         $wire = new LogicWire;
         $wire->setValue($wire_value);
 
-        $or = new OrGate;
+        $or = new ORGate;
         $or->connect($wire, 1);
         $input1 = $or->getInput(1);
 
@@ -99,7 +99,7 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
     {
         $wire = new LogicWire;
 
-        $or = new OrGate;
+        $or = new ORGate;
         $or->in(["1"=>$input1, "2"=>$input2]);
         $output = $or->out();
         $or->connect($wire);
