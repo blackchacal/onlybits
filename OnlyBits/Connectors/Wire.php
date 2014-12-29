@@ -38,5 +38,7 @@ abstract class Wire implements IConnect
     public function connect(Wire $wire, $pin = null)
     {
         $this->setValue($wire->getValue());
+
+        return $this;
     }
 }
