@@ -2,10 +2,11 @@
 
 namespace OnlyBits\LogicGates;
 
+use OnlyBits\LogicGates\ILogicGate;
 use OnlyBits\Connectors\IConnect;
 use OnlyBits\Connectors\Wire;
 
-abstract class LogicGate implements IConnect
+abstract class LogicGate implements IConnect, ILogicGate
 {
     /**
      * Total number of inputs for the gate.
@@ -33,7 +34,6 @@ abstract class LogicGate implements IConnect
      * @var bool
      */
     protected $output;
-
 
     /**
      * Constructor.
@@ -68,11 +68,7 @@ abstract class LogicGate implements IConnect
     }
 
     /**
-     * Sets the gate inputs. The inputs should have the same format as defined
-     * earlier.
-     *
-     * @param  array  $inputs Gate input values
-     * @return array          Gate inputs
+     * {@inheritdoc}
      */
     public function in(array $inputs = [])
     {
@@ -86,9 +82,7 @@ abstract class LogicGate implements IConnect
     }
 
     /**
-     * Calculates and retrieves the gate output.
-     *
-     * @return bool Gate output.
+     * {@inheritdoc}
      */
     abstract public function out();
 
