@@ -68,47 +68,21 @@ abstract class LogicGate implements IConnect
     }
 
     /**
-     * Retrivies the inputs array.
-     *
-     * @return array Inputs list.
-     */
-    public function getAllInputs()
-    {
-        return $this->inputs;
-    }
-
-    /**
-     * Retrives the input value according to input number.
-     *
-     * @param  int $number Input number.
-     * @return bool        Input value.
-     */
-    public function getInput($number)
-    {
-        $number = intval($number);
-
-        if ($number < 1 || $number > $this->total_inputs) {
-            $number = "1";
-        }
-
-        return $this->inputs[strval($number)];
-    }
-
-
-    /**
      * Sets the gate inputs. The inputs should have the same format as defined
      * earlier.
      *
      * @param  array  $inputs Gate input values
-     * @return void
+     * @return array          Gate inputs
      */
-    public function in(array $inputs)
+    public function in(array $inputs = [])
     {
         foreach ($inputs as $key => $value) {
             if (array_key_exists($key, $this->inputs) && is_bool($value)) {
                 $this->inputs[$key] = $value;
             }
         }
+
+        return $this->inputs;
     }
 
     /**

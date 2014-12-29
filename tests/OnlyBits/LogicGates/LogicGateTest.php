@@ -1,7 +1,6 @@
 <?php
 
 use OnlyBits\LogicGates\ORGate;
-
 use OnlyBits\Connectors\LogicWire;
 
 class LogicGateTest extends PHPUnit_Framework_TestCase
@@ -24,7 +23,7 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
     {
         $or = new ORGate($inputs);
         $total_inputs = $or->getTotalInputs();
-        $all_inputs = $or->getAllInputs();
+        $all_inputs = $or->in();
 
         $this->assertCount($total_inputs, $all_inputs, "The input list doesn't have the same size as total inputs!");
     }
@@ -44,31 +43,6 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @dataProvider logicGateThreeInputProvider
-     */
-    public function testLogicGateGetInput($chosen_input, $inputs)
-    {
-        $or = new ORGate(3);
-        $or->in(["1"=>$inputs[0], "2"=>$inputs[1], "3"=>$inputs[2]]);
-
-        $input = $or->getInput($chosen_input);
-
-        $this->assertEquals($input, $inputs[$chosen_input-1], "The logic gate is not returning the proper input value!");
-    }
-
-    public function logicGateThreeInputProvider()
-    {
-        return [
-            [1, [true, false, false]],
-            [3, [true, false, false]],
-            [2, [false, false, false]],
-            [1, [true, true, true]],
-            [2, [false, false, true]],
-            [3, [true, true, false]],
-        ];
-    }
-
-    /**
      * @dataProvider logicWireValueProvider
      */
     public function testConnectionBetweenWireAndLogicGateInput($wire_value)
@@ -78,10 +52,10 @@ class LogicGateTest extends PHPUnit_Framework_TestCase
 
         $or = new ORGate;
         $or->connect($wire, 1);
-        $input1 = $or->getInput(1);
+        $inputs = $or->in();
+        $input1 = $inputs["1"];
 
         $this->assertEquals($input1, $wire_value, "The connection between wire and logic gate input is corrupted!");
-
     }
 
     public function logicWireValueProvider()
