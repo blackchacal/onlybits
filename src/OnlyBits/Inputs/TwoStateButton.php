@@ -51,7 +51,7 @@ class TwoStateButton implements InputInterface, ConnectInterface
      */
     public function trigger()
     {
-        $this->current_state = ($this->current_state == $state1) ? $state2 : $state1;
+        $this->current_state = ($this->current_state == $this->state1) ? $this->state2 : $this->state1;
 
         $this->output = $this->current_state;
     }
@@ -62,7 +62,5 @@ class TwoStateButton implements InputInterface, ConnectInterface
     public function connect(Wire $wire, $pin = null)
     {
         $wire->setValue($this->output);
-
-        return $wire;
     }
 }
