@@ -2,40 +2,18 @@
 
 namespace OnlyBits\Outputs;
 
-use OnlyBits\Connectors\ConnectInterface;
 use OnlyBits\Connectors\WireAbstract;
 
-class BinaryLight implements OutputInterface, ConnectInterface
+class BinaryLight extends OutputAbstract
 {
-    /**
-     * The state of the light: false/off, true/on.
-     *
-     * @var bool
-     */
-    private $state;
-
-    /**
-     * Light's input. Receives its value from other components through logic wire
-     * connection.
-     *
-     * @var bool
-     */
-    private $input;
-
-    /**
-     * Instance of entity connected to it. In this case it should be a wire.
-     *
-     * @var OnlyBits\Connectors\Wire
-     */
-    private $connected_to;
-
     /**
      * Constructor.
      */
     public function __construct()
     {
+        parent::__construct(1, false);
+
         $this->state = false;
-        $this->input = false;
     }
 
     /**
@@ -43,9 +21,9 @@ class BinaryLight implements OutputInterface, ConnectInterface
      */
     public function connect(WireAbstract $wire, $pin = null)
     {
-        $this->input = $wire->getValue();
+        $this->inputs["1"] = $wire->getValue();
 
-        $this->connected_to = $wire;
+        $this->connected_to[] = $wire;
     }
 
     /**
@@ -53,11 +31,11 @@ class BinaryLight implements OutputInterface, ConnectInterface
      */
     public function show()
     {
-        if ($this->connected_to instanceof WireAbstract) {
-            $this->input = $this->connected_to->getValue();
+        if (count($this->connected_to) > 0 && $this->connected_to[0] instanceof WireAbstract) {
+            $this->inputs["1"] = $this->connected_to[0]->getValue();
         }
 
-        $this->state = $this->input;
+        $this->state = $this->inputs["1"];
 
         return $this->state;
     }
