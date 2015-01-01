@@ -2,7 +2,7 @@
 
 namespace OnlyBits\Outputs;
 
-interface IOutput
+interface OutputInterface
 {
     /**
      * Manifests the output signal according to the input values, and output

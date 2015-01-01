@@ -2,7 +2,7 @@
 
 namespace OnlyBits\Connectors;
 
-abstract class Wire implements IConnect
+abstract class Wire implements ConnectInterface
 {
     /**
      * The wire information value. Depending on the type of wire

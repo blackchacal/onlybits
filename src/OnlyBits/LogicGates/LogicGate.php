@@ -2,11 +2,10 @@
 
 namespace OnlyBits\LogicGates;
 
-use OnlyBits\LogicGates\ILogicGate;
-use OnlyBits\Connectors\IConnect;
+use OnlyBits\Connectors\ConnectInterface;
 use OnlyBits\Connectors\Wire;
 
-abstract class LogicGate implements IConnect, ILogicGate
+abstract class LogicGate implements ConnectInterface, LogicGateInterface
 {
     /**
      * Total number of inputs for the gate.

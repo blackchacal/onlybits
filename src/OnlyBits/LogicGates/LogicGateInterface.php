@@ -2,7 +2,7 @@
 
 namespace OnlyBits\LogicGates;
 
-interface ILogicGate
+interface LogicGateInterface
 {
     /**
      * Sets the gate inputs. The inputs should have the following format:

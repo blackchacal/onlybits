@@ -2,11 +2,10 @@
 
 namespace OnlyBits\Outputs;
 
-use OnlyBits\Outputs\IOutput;
-use OnlyBits\Connectors\IConnect;
+use OnlyBits\Connectors\ConnectInterface;
 use OnlyBits\Connectors\Wire;
 
-class BinaryLight implements IOutput, IConnect
+class BinaryLight implements OutputInterface, ConnectInterface
 {
     /**
      * The state of the light: false/off, true/on.

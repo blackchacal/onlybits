@@ -2,7 +2,7 @@
 
 namespace OnlyBits\Inputs;
 
-interface IInput
+interface InputInterface
 {
     /**
      * Emits a signal according to the input type and state.

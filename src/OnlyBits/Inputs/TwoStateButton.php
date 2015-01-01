@@ -2,11 +2,10 @@
 
 namespace OnlyBits\Inputs;
 
-use OnlyBits\Inputs\IInput;
-use OnlyBits\Connectors\IConnect;
+use OnlyBits\Connectors\ConnectInterface;
 use OnlyBits\Connectors\Wire;
 
-class TwoStateButton implements IInput, IConnect
+class TwoStateButton implements InputInterface, ConnectInterface
 {
     /**
      * Button state 1.
