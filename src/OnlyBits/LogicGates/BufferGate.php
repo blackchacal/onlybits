@@ -2,7 +2,7 @@
 
 namespace OnlyBits\LogicGates;
 
-class BufferGate extends LogicGate
+class BufferGate extends LogicGateAbstract
 {
     public function __construct()
     {

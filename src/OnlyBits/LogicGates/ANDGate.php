@@ -2,7 +2,7 @@
 
 namespace OnlyBits\LogicGates;
 
-class ANDGate extends LogicGate
+class ANDGate extends LogicGateAbstract
 {
     /**
      * {@inheritdoc}

@@ -2,7 +2,7 @@
 
 namespace OnlyBits\LogicGates;
 
-class XNORGate extends LogicGate
+class XNORGate extends LogicGateAbstract
 {
     public function __construct()
     {

@@ -3,7 +3,7 @@
 namespace OnlyBits\Outputs;
 
 use OnlyBits\Connectors\ConnectInterface;
-use OnlyBits\Connectors\Wire;
+use OnlyBits\Connectors\WireAbstract;
 
 class BinaryLight implements OutputInterface, ConnectInterface
 {
@@ -41,7 +41,7 @@ class BinaryLight implements OutputInterface, ConnectInterface
     /**
      * {@inheritdoc}
      */
-    public function connect(Wire $wire, $pin = null)
+    public function connect(WireAbstract $wire, $pin = null)
     {
         $this->input = $wire->getValue();
 
@@ -53,7 +53,7 @@ class BinaryLight implements OutputInterface, ConnectInterface
      */
     public function show()
     {
-        if ($this->connected_to instanceof Wire) {
+        if ($this->connected_to instanceof WireAbstract) {
             $this->input = $this->connected_to->getValue();
         }
 

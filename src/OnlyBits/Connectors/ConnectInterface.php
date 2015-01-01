@@ -2,7 +2,7 @@
 
 namespace OnlyBits\Connectors;
 
-use OnlyBits\Connectors\Wire;
+use OnlyBits\Connectors\WireAbstract;
 
 interface ConnectInterface
 {
@@ -14,5 +14,5 @@ interface ConnectInterface
      * @param  int              $pin  Pin where the wire is connected.
      * @return void
      */
-    public function connect(Wire $wire, $pin = null);
+    public function connect(WireAbstract $wire, $pin = null);
 }

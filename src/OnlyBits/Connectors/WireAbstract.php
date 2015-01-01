@@ -2,7 +2,7 @@
 
 namespace OnlyBits\Connectors;
 
-abstract class Wire implements ConnectInterface
+abstract class WireAbstract implements ConnectInterface
 {
     /**
      * The wire information value. Depending on the type of wire
@@ -35,7 +35,7 @@ abstract class Wire implements ConnectInterface
      *
      * {@inheritdoc}
      */
-    public function connect(Wire $wire, $pin = null)
+    public function connect(WireAbstract $wire, $pin = null)
     {
         $this->setValue($wire->getValue());
 

@@ -3,9 +3,9 @@
 namespace OnlyBits\LogicGates;
 
 use OnlyBits\Connectors\ConnectInterface;
-use OnlyBits\Connectors\Wire;
+use OnlyBits\Connectors\WireAbstract;
 
-abstract class LogicGate implements ConnectInterface, LogicGateInterface
+abstract class LogicGateAbstract implements ConnectInterface, LogicGateInterface
 {
     /**
      * Total number of inputs for the gate.
@@ -90,7 +90,7 @@ abstract class LogicGate implements ConnectInterface, LogicGateInterface
      *
      * {@inheritdoc}
      */
-    public function connect(Wire $wire, $pin = null)
+    public function connect(WireAbstract $wire, $pin = null)
     {
         if (is_null($pin)) {
             // Connect output to wire

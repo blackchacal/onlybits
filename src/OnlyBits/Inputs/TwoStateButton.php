@@ -3,7 +3,7 @@
 namespace OnlyBits\Inputs;
 
 use OnlyBits\Connectors\ConnectInterface;
-use OnlyBits\Connectors\Wire;
+use OnlyBits\Connectors\WireAbstract;
 
 class TwoStateButton implements InputInterface, ConnectInterface
 {
@@ -61,7 +61,7 @@ class TwoStateButton implements InputInterface, ConnectInterface
         $this->current_state = ($this->current_state == $this->state1) ? $this->state2 : $this->state1;
         $this->output = $this->current_state;
 
-        if ($this->connected_to instanceof Wire) {
+        if ($this->connected_to instanceof WireAbstract) {
             $this->connected_to->setValue($this->output);
         }
     }
@@ -69,7 +69,7 @@ class TwoStateButton implements InputInterface, ConnectInterface
     /**
      * {@inheritdoc}
      */
-    public function connect(Wire $wire, $pin = null)
+    public function connect(WireAbstract $wire, $pin = null)
     {
         $wire->setValue($this->output);
 

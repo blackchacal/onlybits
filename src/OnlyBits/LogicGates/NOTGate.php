@@ -2,7 +2,7 @@
 
 namespace OnlyBits\LogicGates;
 
-class NOTGate extends LogicGate
+class NOTGate extends LogicGateAbstract
 {
     public function __construct()
     {

@@ -2,9 +2,9 @@
 
 namespace OnlyBits\Connectors;
 
-use OnlyBits\Connectors\Wire;
+use OnlyBits\Connectors\WireAbstract;
 
-class LogicWire extends Wire
+class LogicWire extends WireAbstract
 {
     public function setValue($value)
     {
