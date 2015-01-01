@@ -1,11 +1,11 @@
 {
-    "name": "black-chacal/only-bits",
+    "name": "blackchacal/only-bits",
     "require-dev": {
         "phpunit/phpunit": "4.*"
     },
     "autoload": {
         "psr-4": {
-            "OnlyBits\\": "OnlyBits/"
+            "OnlyBits\\": "src/OnlyBits/"
         }
     }
 }
