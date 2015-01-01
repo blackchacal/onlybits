@@ -23,6 +23,13 @@ class BinaryLight implements OutputInterface, ConnectInterface
     private $input;
 
     /**
+     * Instance of entity connected to it. In this case it should be a wire.
+     *
+     * @var OnlyBits\Connectors\Wire
+     */
+    private $connected_to;
+
+    /**
      * Constructor.
      */
     public function __construct()
@@ -37,6 +44,8 @@ class BinaryLight implements OutputInterface, ConnectInterface
     public function connect(Wire $wire, $pin = null)
     {
         $this->input = $wire->getValue();
+
+        $this->connected_to = $wire;
     }
 
     /**
@@ -44,6 +53,10 @@ class BinaryLight implements OutputInterface, ConnectInterface
      */
     public function show()
     {
+        if ($this->connected_to instanceof Wire) {
+            $this->input = $this->connected_to->getValue();
+        }
+
         $this->state = $this->input;
 
         return $this->state;

@@ -32,6 +32,13 @@ class TwoStateButton implements InputInterface, ConnectInterface
     private $output;
 
     /**
+     * Instance of entity connected to it. In this case it should be a wire.
+     *
+     * @var OnlyBits\Connectors\Wire
+     */
+    private $connected_to;
+
+    /**
      * Constructor. The state 1 should be default state.
      *
      * @param mixed $state1 Button state 1
@@ -52,8 +59,11 @@ class TwoStateButton implements InputInterface, ConnectInterface
     public function trigger()
     {
         $this->current_state = ($this->current_state == $this->state1) ? $this->state2 : $this->state1;
-
         $this->output = $this->current_state;
+
+        if ($this->connected_to instanceof Wire) {
+            $this->connected_to->setValue($this->output);
+        }
     }
 
     /**
@@ -62,5 +72,7 @@ class TwoStateButton implements InputInterface, ConnectInterface
     public function connect(Wire $wire, $pin = null)
     {
         $wire->setValue($this->output);
+
+        $this->connected_to = $wire;
     }
 }
