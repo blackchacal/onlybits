@@ -2,42 +2,10 @@
 
 namespace OnlyBits\Inputs;
 
-use OnlyBits\Connectors\ConnectInterface;
 use OnlyBits\Connectors\WireAbstract;
 
-class TwoStateButton implements InputInterface, ConnectInterface
+class TwoStateButton extends InputAbstract
 {
-    /**
-     * Button state 1.
-     * @var mixed
-     */
-    private $state1;
-
-    /**
-     * Button state 2.
-     * @var mixed
-     */
-    private $state2;
-
-    /**
-     * Button's current state.
-     * @var mixed
-     */
-    private $current_state;
-
-    /**
-     * The value outputted by the button.
-     * @var mixed
-     */
-    private $output;
-
-    /**
-     * Instance of entity connected to it. In this case it should be a wire.
-     *
-     * @var OnlyBits\Connectors\Wire
-     */
-    private $connected_to;
-
     /**
      * Constructor. The state 1 should be default state.
      *
@@ -46,11 +14,10 @@ class TwoStateButton implements InputInterface, ConnectInterface
      */
     public function __construct($state1, $state2)
     {
-        $this->state1 = $state1;
-        $this->state2 = $state2;
+        parent::__construct(1, $state1);
 
-        $this->current_state = $state1;
-        $this->output = $state1;
+        $this->available_states[] = $state1;
+        $this->available_states[] = $state2;
     }
 
     /**
@@ -58,11 +25,13 @@ class TwoStateButton implements InputInterface, ConnectInterface
      */
     public function trigger()
     {
-        $this->current_state = ($this->current_state == $this->state1) ? $this->state2 : $this->state1;
-        $this->output = $this->current_state;
+        $state1 = $this->available_states[0];
+        $state2 = $this->available_states[1];
 
-        if ($this->connected_to instanceof WireAbstract) {
-            $this->connected_to->setValue($this->output);
+        $this->outputs["1"] = ($this->outputs["1"] == $state1) ? $state2 : $state1;
+
+        if (count($this->connected_to) > 0 && $this->connected_to["1"] instanceof WireAbstract) {
+            $this->connected_to["1"]->setValue($this->outputs["1"]);
         }
     }
 
@@ -71,8 +40,8 @@ class TwoStateButton implements InputInterface, ConnectInterface
      */
     public function connect(WireAbstract $wire, $pin = null)
     {
-        $wire->setValue($this->output);
+        $wire->setValue($this->outputs["1"]);
 
-        $this->connected_to = $wire;
+        $this->connected_to["1"] = $wire;
     }
 }
