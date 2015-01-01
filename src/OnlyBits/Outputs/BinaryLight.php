@@ -23,7 +23,7 @@ class BinaryLight extends OutputAbstract
     {
         $this->inputs["1"] = $wire->getValue();
 
-        $this->connected_to[] = $wire;
+        $this->connected_to["1"] = $wire;
     }
 
     /**
@@ -31,8 +31,8 @@ class BinaryLight extends OutputAbstract
      */
     public function show()
     {
-        if (count($this->connected_to) > 0 && $this->connected_to[0] instanceof WireAbstract) {
-            $this->inputs["1"] = $this->connected_to[0]->getValue();
+        if (count($this->connected_to) > 0 && $this->connected_to["1"] instanceof WireAbstract) {
+            $this->inputs["1"] = $this->connected_to["1"]->getValue();
         }
 
         $this->state = $this->inputs["1"];
