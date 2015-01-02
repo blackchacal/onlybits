@@ -93,6 +93,22 @@ abstract class LogicGateAbstract implements ConnectInterface, LogicGateInterface
     abstract public function out();
 
     /**
+     * Updates the value of the wire connected to ouput if there's one.
+     *
+     * @return void
+     */
+    protected function updateOutputConnection()
+    {
+        if (count($this->connected_to) > 0) {
+            foreach ($this->connected_to as $connected) {
+                if ($connected['pin'] == 'out' && $connected['entity'] instanceof WireAbstract) {
+                    $connected['entity']->setValue($this->output);
+                }
+            }
+        }
+    }
+
+    /**
      * Connect wires with logic gates.
      *
      * {@inheritdoc}
