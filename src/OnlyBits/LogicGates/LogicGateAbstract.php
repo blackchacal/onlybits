@@ -35,6 +35,13 @@ abstract class LogicGateAbstract implements ConnectInterface, LogicGateInterface
     protected $output;
 
     /**
+     * Instance of components connected to it. In general it should be wires.
+     *
+     * @var array
+     */
+    protected $connected_to = [];
+
+    /**
      * Constructor.
      *
      * @param int $number_inputs Gate total number of inputs.
@@ -95,9 +102,11 @@ abstract class LogicGateAbstract implements ConnectInterface, LogicGateInterface
         if (is_null($pin)) {
             // Connect output to wire
             $wire->setValue($this->output);
+            $this->connected_to[] = ['entity' => $wire, 'pin' => 'out'];
         } else {
             // Connect input to wire
             $this->inputs[strval($pin)] = $wire->getValue();
+            $this->connected_to[] = ['entity' => $wire, 'pin' => $pin];
         }
     }
 }
