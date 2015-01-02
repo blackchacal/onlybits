@@ -13,6 +13,13 @@ abstract class WireAbstract implements ConnectInterface
     protected $value;
 
     /**
+     * Instance of components connected to it. It can be wires or other components.
+     *
+     * @var array
+     */
+    protected $connected_to = [];
+
+    /**
      * Sets the wire value.
      *
      * @param mixed $value New wire value.
@@ -38,7 +45,6 @@ abstract class WireAbstract implements ConnectInterface
     public function connect(WireAbstract $wire, $pin = null)
     {
         $this->setValue($wire->getValue());
-
-        return $this;
+        $this->connected_to[] = ['entity' => $wire, 'pin' => $pin];
     }
 }
