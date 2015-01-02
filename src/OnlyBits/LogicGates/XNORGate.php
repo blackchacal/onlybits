@@ -2,6 +2,8 @@
 
 namespace OnlyBits\LogicGates;
 
+use OnlyBits\Connectors\WireAbstract;
+
 class XNORGate extends LogicGateAbstract
 {
     public function __construct()
@@ -18,6 +20,14 @@ class XNORGate extends LogicGateAbstract
         $input2 = $this->inputs["2"];
 
         $this->output = !($input1 xor $input2);
+
+        if (count($this->connected_to) > 0) {
+            foreach ($this->connected_to as $connected) {
+                if ($connected['pin'] == 'out' && $connected['entity'] instanceof WireAbstract) {
+                    $connected['entity']->setValue($this->output);
+                }
+            }
+        }
 
         return $this->output;
     }

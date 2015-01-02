@@ -2,6 +2,8 @@
 
 namespace OnlyBits\LogicGates;
 
+use OnlyBits\Connectors\WireAbstract;
+
 class ANDGate extends LogicGateAbstract
 {
     /**
@@ -28,6 +30,14 @@ class ANDGate extends LogicGateAbstract
             if (!$value) {
                 $this->output = $value;
                 break;
+            }
+        }
+
+        if (count($this->connected_to) > 0) {
+            foreach ($this->connected_to as $connected) {
+                if ($connected['pin'] == 'out' && $connected['entity'] instanceof WireAbstract) {
+                    $connected['entity']->setValue($this->output);
+                }
             }
         }
 
