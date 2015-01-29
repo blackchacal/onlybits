@@ -2,7 +2,11 @@
 
 ## Goal
 
-The aim of this project is to create a small PHP/JS library for logic circuit simulations.
+The aim of this project is to create a small JS app for logic circuit simulations.
+
+## External libraries
+
+* [jsPlumb](https://jsplumbtoolkit.com) ([GitHub](https://github.com/sporritt/jsplumb/))
 
 ## License
 
