@@ -1,0 +1,14 @@
+{
+  "name": "onlybits",
+  "version": "0.1.0",
+  "homepage": "https://github.com/blackchacal/onlybits",
+  "authors": [
+    "Ricardo Tonet <ribeiro.tonet@gmail.com>"
+  ],
+  "description": "JS app for logic circuit simulations.",
+  "main": "src/app.js",
+  "license": "MIT",
+  "dependencies": {
+    "jsPlumb": "git://github.com/sporritt/jsPlumb.git#1.7.2"
+  }
+}
