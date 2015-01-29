@@ -1,5 +1,10 @@
 /**
- * Drawarea module.
+ * @module DrawArea
+ *
+ * Represents the project drawing area. It's responsable for keeping track of
+ * drawable components.
+ *
+ * @requires module:jsplumb (Require JS format)
  *
  * @param  {string} container_id Main container id.
  * @param  {Object} config       Main configuration.
@@ -13,18 +18,22 @@ module.exports = function (container_id, config) {
      * @private
      * @type {Object}
      */
-    var utils = require('./utils.js')();
+    var utils = require('../utils.js')();
 
     /**
      * jsPlumb main container id. This is the dom element container for all jsPlumb
      * objects and interaction.
      *
+     * @private
      * @type {string}
      */
     var container = container_id;
 
     /**
      * The main jsPlumb instance.
+     *
+     * @private
+     * @type {Object}
      */
     var plumb;
 
@@ -32,6 +41,7 @@ module.exports = function (container_id, config) {
      * List of all components inside the drawing area. Only the "objects", not the
      * connections.
      *
+     * @private
      * @type {Array}
      */
     var components = [];
@@ -39,6 +49,7 @@ module.exports = function (container_id, config) {
     /**
      * Default configuration for the drawing area.
      *
+     * @private
      * @type {Object}
      */
     var defaultConfig = {
@@ -88,6 +99,10 @@ module.exports = function (container_id, config) {
         }
     }
 
+    /**
+     * Initialize jsPlumb and add an instance to this module.
+     * @return {null}
+     */
     function initPlumb () {
         jsPlumb.ready(function() {
             plumb = jsPlumb.getInstance(defaultConfig.plumb);
@@ -95,6 +110,12 @@ module.exports = function (container_id, config) {
         });
     }
 
+    /**
+     * Set the DOM container for working area and set appropriate styles for
+     * jsPlumb usage.
+     *
+     * @return {null}
+     */
     function initContainer () {
         var container = document.getElementById(container_id);
 
@@ -104,6 +125,11 @@ module.exports = function (container_id, config) {
         container.style.height = defaultConfig.height + "px";
     }
 
+    /**
+     * Initialize DrawArea module.
+     *
+     * @return {null}
+     */
     function init () {
         initContainer();
         initPlumb();

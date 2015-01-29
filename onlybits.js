@@ -1,22 +1,36 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 window.OnlyBits = require('./core.js');
 },{"./core.js":2}],2:[function(require,module,exports){
-
-module.exports = function (container) {
+/**
+ * @module Core
+ *
+ * Main file that assembles the app modules.
+ *
+ * @requires module:DrawArea
+ *
+ * @param  {string} container_id Main container id.
+ * @return {Object}              Public methods.
+ */
+module.exports = function (container_id) {
 
     var config = {};
 
     return {
         init: function() {
-            var drawarea = require('./drawarea.js')(container, config);
+            var drawarea = require('./ui/drawarea.js')(container_id, config);
 
             drawarea.init();
         }
     };
 };
-},{"./drawarea.js":3}],3:[function(require,module,exports){
+},{"./ui/drawarea.js":3}],3:[function(require,module,exports){
 /**
- * Drawarea module.
+ * @module DrawArea
+ *
+ * Represents the project drawing area. It's responsable for keeping track of
+ * drawable components.
+ *
+ * @requires module:jsplumb (Require JS format)
  *
  * @param  {string} container_id Main container id.
  * @param  {Object} config       Main configuration.
@@ -30,18 +44,22 @@ module.exports = function (container_id, config) {
      * @private
      * @type {Object}
      */
-    var utils = require('./utils.js')();
+    var utils = require('../utils.js')();
 
     /**
      * jsPlumb main container id. This is the dom element container for all jsPlumb
      * objects and interaction.
      *
+     * @private
      * @type {string}
      */
     var container = container_id;
 
     /**
      * The main jsPlumb instance.
+     *
+     * @private
+     * @type {Object}
      */
     var plumb;
 
@@ -49,6 +67,7 @@ module.exports = function (container_id, config) {
      * List of all components inside the drawing area. Only the "objects", not the
      * connections.
      *
+     * @private
      * @type {Array}
      */
     var components = [];
@@ -56,6 +75,7 @@ module.exports = function (container_id, config) {
     /**
      * Default configuration for the drawing area.
      *
+     * @private
      * @type {Object}
      */
     var defaultConfig = {
@@ -105,6 +125,10 @@ module.exports = function (container_id, config) {
         }
     }
 
+    /**
+     * Initialize jsPlumb and add an instance to this module.
+     * @return {null}
+     */
     function initPlumb () {
         jsPlumb.ready(function() {
             plumb = jsPlumb.getInstance(defaultConfig.plumb);
@@ -112,6 +136,12 @@ module.exports = function (container_id, config) {
         });
     }
 
+    /**
+     * Set the DOM container for working area and set appropriate styles for
+     * jsPlumb usage.
+     *
+     * @return {null}
+     */
     function initContainer () {
         var container = document.getElementById(container_id);
 
@@ -121,6 +151,11 @@ module.exports = function (container_id, config) {
         container.style.height = defaultConfig.height + "px";
     }
 
+    /**
+     * Initialize DrawArea module.
+     *
+     * @return {null}
+     */
     function init () {
         initContainer();
         initPlumb();
@@ -130,7 +165,7 @@ module.exports = function (container_id, config) {
         init: init
     };
 }
-},{"./utils.js":4}],4:[function(require,module,exports){
+},{"../utils.js":4}],4:[function(require,module,exports){
 module.exports = function () {
 
     return {

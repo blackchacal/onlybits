@@ -1,3 +1,10 @@
+/**
+ * @module Utils
+ *
+ * Set of utility functions.
+ *
+ * @return {Object} Public methods.
+ */
 module.exports = function () {
 
     return {
