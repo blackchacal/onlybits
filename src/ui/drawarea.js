@@ -5,6 +5,7 @@
  * drawable components.
  *
  * @requires module:jsplumb (Require JS format)
+ * @requires module:Utils
  *
  * @param  {string} container_id Main container id.
  * @param  {Object} config       Main configuration.
@@ -91,13 +92,7 @@ module.exports = function (container_id, config) {
 
 
     // Set configurations
-    if (typeof config === "object" && !utils.isEmpty(config)) {
-        for (var prop in config) {
-            if (defaultConfig.hasOwnProperty(prop)) {
-                defaultConfig.prop = config.prop;
-            }
-        }
-    }
+    utils.whiteListObject(defaultConfig, config);
 
     /**
      * Initialize jsPlumb and add an instance to this module.
