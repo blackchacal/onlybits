@@ -36,7 +36,7 @@ module.exports = function (container_id, config) {
      * @private
      * @type {Object}
      */
-    var plumb;
+    var diagrammer;
 
     /**
      * List of all components inside the drawing area. Only the "objects", not the
@@ -61,7 +61,7 @@ module.exports = function (container_id, config) {
             dx: 10,
             dy: 10
         },
-        plumb: {
+        diagrammer: {
             Anchor: "BottomCenter",
             Anchors: [ null, null ],
             ConnectionsDetachable: true,
@@ -98,11 +98,9 @@ module.exports = function (container_id, config) {
      * Initialize jsPlumb and add an instance to this module.
      * @return {null}
      */
-    function initPlumb () {
-        jsPlumb.ready(function() {
-            plumb = jsPlumb.getInstance(defaultConfig.plumb);
-            plumb.setContainer(container_id);
-        });
+    function initDiagrammer () {
+        diagrammer = jsPlumb.getInstance(defaultConfig.diagrammer);
+        diagrammer.setContainer(container_id);
     }
 
     /**
@@ -128,7 +126,7 @@ module.exports = function (container_id, config) {
      */
     function init () {
         initContainer();
-        initPlumb();
+        initDiagrammer();
     }
 
     return {
