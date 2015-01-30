@@ -28,7 +28,7 @@ module.exports = function (container_id, config) {
      * @private
      * @type {string}
      */
-    var container = container_id;
+    var container_id = container_id;
 
     /**
      * The main jsPlumb instance.
@@ -114,10 +114,11 @@ module.exports = function (container_id, config) {
     function initContainer () {
         var container = document.getElementById(container_id);
 
-        container.style.position = 'relative';
-        container.style.border = '1px solid #000';
+        container.style.position = "relative";
+        container.style.border = "1px solid #000";
         container.style.width = defaultConfig.width + "px";
         container.style.height = defaultConfig.height + "px";
+        container.style.overflow = "hidden";
     }
 
     /**
