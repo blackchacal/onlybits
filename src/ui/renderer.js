@@ -14,16 +14,29 @@ module.exports = function (container_id, diagrammer) {
 
     var utils = require('../utils.js')();
 
+    var diagrammer = diagrammer;
+
     var endpoint_options = {
         isSource: true,
         isTarget: true,
+        maxConnections: -1,
+        endpoint: [ "Dot", { radius: 5} ],
         scope: "logic_connection"
     }
 
     var drawable_default = {
         size: { width: 100, height: 100 },
         position: { top: 10, left: 10 },
-        endpoint: [ "Dot", { radius: 5 } ]
+        endpoints: [
+            {
+                /* [x, y, dx, dy, offsetx, offsety] */
+                anchor: [0, 0.5, -1, 0, 0, 0]
+            },
+            {
+                /* [x, y, dx, dy, offsetx, offsety] */
+                anchor: [1, 0.5, 1, 0, 0, 0]
+            }
+        ]
     };
 
     function setDrawableConfig (drawable_config) {
@@ -47,10 +60,20 @@ module.exports = function (container_id, diagrammer) {
         container.appendChild(element);
     }
 
+    function createEndpoints (drawable_id) {
+        diagrammer.addEndpoints(drawable_id, drawable_default.endpoints, endpoint_options);
+    }
+
+    function setElementDraggable (drawable_id) {
+        diagrammer.draggable(drawable_id);
+    }
+
     return {
         render: function (drawable_id, drawable_config) {
             setDrawableConfig(drawable_config);
             createDomElement(drawable_id);
+            setElementDraggable(drawable_id);
+            createEndpoints(drawable_id);
         }
     }
 }
