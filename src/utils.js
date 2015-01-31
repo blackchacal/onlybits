@@ -47,9 +47,27 @@ module.exports = (function () {
         }
     }
 
+    /**
+     * Creates a new object that inherits from a prototype. Extracted from chapter
+     * 6 of "Javascript - The Definitive Guide", 6th Edition from David Flanagan.
+     *
+     * @param  {Object} p Parent object.
+     * @return {Object}   Child object.
+     */
+    function inherit (p) {
+        if (p == null) throw TypeError();
+        if (Object.create)
+            return Object.create(p);
+        var t = typeof p;
+        if (t !== "object" && t !== "function") throw TypeError();
+        function f() {};
+        f.prototype = p;
+        return new f();
+    }
+
     return {
         isEmpty: isEmpty,
-
-        whiteListObject: whiteListObject
+        whiteListObject: whiteListObject,
+        inherit: inherit
     }
 })();
