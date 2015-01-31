@@ -82,7 +82,7 @@ module.exports = function (container_id, config) {
             LabelStyle: { color : "black" },
             LogEnabled: false,
             Overlays: [ ],
-            MaxConnections: 1,
+            MaxConnections: -1,
             PaintStyle: { lineWidth : 8, strokeStyle : "#456" },
             ReattachConnections: false,
             RenderMode: "svg",
@@ -135,7 +135,7 @@ module.exports = function (container_id, config) {
             var renderer = require('./renderer.js')(container_id, diagrammer);
 
             // Render component
-            renderer.render(component.id, component.drawable_config);
+            renderer.render(component.id, component.config);
 
             // Add to components list.
             components.push({ id: component.id, logic: component.logic });
