@@ -35,7 +35,7 @@ module.exports = (function () {
                     typeof default_obj[prop] === typeof obj[prop]){
 
                     // If property value is also an object, go recursive.
-                    if (typeof obj[prop] === "object") {
+                    if (obj[prop] instanceof Object && !(obj[prop] instanceof Array)) {
                         if (!isEmpty(obj[prop])) {
                             whiteListObject(default_obj[prop], obj[prop]);
                         }
