@@ -69,7 +69,7 @@ module.exports = function (container_id, config) {
             Connector: "Bezier",
             Container: document.body,
             DoNotThrowErrors: false,
-            DragOptions: { },
+            DragOptions: { constrain: true },
             DropOptions: { },
             Endpoint: "Dot",
             Endpoints: [ null, null ],
