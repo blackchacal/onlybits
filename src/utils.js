@@ -5,7 +5,7 @@
  *
  * @return {Object} Public methods.
  */
-module.exports = function () {
+module.exports = (function () {
 
     /**
      * Checks if object is empty, i.e, has no properties.
@@ -52,4 +52,4 @@ module.exports = function () {
 
         whiteListObject: whiteListObject
     }
-}
+})();

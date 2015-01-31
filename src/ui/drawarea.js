@@ -19,7 +19,7 @@ module.exports = function (container_id, config) {
      * @private
      * @type {Object}
      */
-    var utils = require('../utils.js')();
+    var utils = require('../utils.js');
 
     /**
      * jsPlumb main container id. This is the dom element container for all jsPlumb

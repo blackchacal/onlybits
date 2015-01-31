@@ -12,7 +12,7 @@
  */
 module.exports = function (container_id, diagrammer) {
 
-    var utils = require('../utils.js')();
+    var utils = require('../utils.js');
 
     var diagrammer = diagrammer;
 
