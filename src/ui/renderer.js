@@ -31,7 +31,7 @@ module.exports = function (container_id, diagrammer) {
         element.style.left = drawable_config.position.left+"px";
         element.style.width = drawable_config.size.width+"px";
         element.style.height = drawable_config.size.height+"px";
-        element.style.border = "1px solid red";
+        element.style.backgroundImage = "url("+drawable_config.image+")";
 
         // Append to container
         container.appendChild(element);
