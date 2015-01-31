@@ -119,17 +119,26 @@ module.exports = function (container_id, config) {
         container.style.overflow = "hidden";
     }
 
-    /**
-     * Initialize DrawArea module.
-     *
-     * @return {null}
-     */
-    function init () {
-        initContainer();
-        initDiagrammer();
-    }
-
     return {
-        init: init
+        /**
+         * Initialize DrawArea module.
+         *
+         * @public
+         * @return {null}
+         */
+        init: function () {
+            initContainer();
+            initDiagrammer();
+        },
+
+        addComponent: function (component) {
+            var renderer = require('./renderer.js')(container_id, diagrammer);
+
+            // Render component
+            renderer.render(component.id, component.drawable_config);
+
+            // Add to components list.
+            components.push({ id: component.id, logic: component.logic });
+        }
     };
 }
