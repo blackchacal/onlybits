@@ -19,12 +19,16 @@ module.exports = function () {
         image: "",
         endpoints: [
             {
-                /* [x, y, dx, dy, offsetx, offsety] */
-                anchor: [0, 0.5, -1, 0, 0, 0]
+                anchor: "Top"
             },
             {
-                /* [x, y, dx, dy, offsetx, offsety] */
-                anchor: [1, 0.5, 1, 0, 0, 0]
+                anchor: "Right"
+            },
+            {
+                anchor: "Bottom"
+            },
+            {
+                anchor: "Left"
             }
         ]
     };
@@ -33,12 +37,22 @@ module.exports = function () {
         utils.whiteListObject(drawable_default, drawable_config);
     }
 
-    function create (drawable) {
-        setDrawableConfig(drawable.drawable_config);
+    function create (drawable_type) {
+        var drawable;
+
+        switch (drawable_type) {
+            case "or":
+                drawable = require('./drawables/logic/or.js');
+                break;
+            default:
+                break;
+        }
+
+        setDrawableConfig(drawable.config);
 
         return {
             id: drawable.id,
-            drawable_config: drawable_default,
+            config: drawable_default,
             logic: drawable.logic
         }
     }
