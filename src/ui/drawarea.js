@@ -6,6 +6,8 @@
  *
  * @requires module:jsplumb (Require JS format)
  * @requires module:Utils
+ * @requires module:Renderer
+ * @requires module:Drawable
  *
  * @param  {string} container_id Main container id.
  * @param  {Object} config       Main configuration.
@@ -131,8 +133,10 @@ module.exports = function (container_id, config) {
             initDiagrammer();
         },
 
-        addComponent: function (component) {
-            var renderer = require('./renderer.js')(container_id, diagrammer);
+        addComponent: function (component_type) {
+            var renderer = require('./renderer.js')(container_id, diagrammer),
+                drawable = require('./drawable.js')();
+                component = drawable.create(component_type);
 
             // Render component
             renderer.render(component.id, component.config);
