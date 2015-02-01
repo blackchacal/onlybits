@@ -37,16 +37,10 @@ module.exports = function () {
         utils.whiteListObject(drawable_default, drawable_config);
     }
 
-    function create (drawable_type) {
-        var drawable;
+    function create (drawable_name, drawable_group) {
 
-        switch (drawable_type) {
-            case "or":
-                drawable = require('./drawables/logic/or.js');
-                break;
-            default:
-                break;
-        }
+        var drawables_list = require('./drawables/drawables_list.js');
+        var drawable = drawables_list[drawable_group][drawable_name];
 
         setDrawableConfig(drawable.config);
 

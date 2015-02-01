@@ -19,8 +19,8 @@ module.exports = function (container_id) {
             drawarea.init();
         },
 
-        addComponent: function(component_type) {
-            drawarea.addComponent(component_type);
+        addComponent: function(component_name, component_group) {
+            drawarea.addComponent(component_name, component_group);
         }
     };
 };

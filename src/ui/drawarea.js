@@ -119,6 +119,7 @@ module.exports = function (container_id, config) {
         container.style.width = defaultConfig.width + "px";
         container.style.height = defaultConfig.height + "px";
         container.style.overflow = "hidden";
+        container.style.padding = "none";
     }
 
     return {
@@ -133,10 +134,10 @@ module.exports = function (container_id, config) {
             initDiagrammer();
         },
 
-        addComponent: function (component_type) {
+        addComponent: function (component_name, component_group) {
             var renderer = require('./renderer.js')(container_id, diagrammer),
                 drawable = require('./drawable.js')();
-                component = drawable.create(component_type);
+                component = drawable.create(component_name, component_group);
 
             // Render component
             renderer.render(component.id, component.config);
