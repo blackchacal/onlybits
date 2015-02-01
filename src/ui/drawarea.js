@@ -68,7 +68,7 @@ module.exports = function (container_id, config) {
             Anchors: [ null, null ],
             ConnectionsDetachable: true,
             ConnectionOverlays: [],
-            Connector: "Bezier",
+            Connector: "Flowchart",
             Container: document.body,
             DoNotThrowErrors: false,
             DragOptions: { constrain: true },
@@ -136,7 +136,7 @@ module.exports = function (container_id, config) {
 
         addComponent: function (component_name, component_group) {
             var renderer = require('./renderer.js')(container_id, diagrammer),
-                drawable = require('./drawable.js')();
+                drawable = require('./drawable.js')(),
                 component = drawable.create(component_name, component_group);
 
             // Render component

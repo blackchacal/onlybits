@@ -11,10 +11,20 @@
     <script src="onlybits.js"></script>
     <script src="./bower_components/jsPlumb/dist/js/dom.jsPlumb-1.7.2-min.js"></script>
     <script>
-        var ob = OnlyBits("drawarea");
-        ob.init();
+        jsPlumb.ready(function() {
 
-        ob.addComponent("or");
+            var ob = OnlyBits("drawarea");
+            ob.init();
+
+            ob.addComponent("or", "logic");
+            ob.addComponent("nor", "logic");
+            ob.addComponent("xor", "logic");
+            ob.addComponent("xnor", "logic");
+            ob.addComponent("not", "logic");
+            ob.addComponent("and", "logic");
+            ob.addComponent("nand", "logic");
+            ob.addComponent("buffer", "logic");
+        });
     </script>
 </body>
 </html>

@@ -19,21 +19,15 @@ module.exports = function (container_id) {
 
     return {
         init: function() {
-
-            // var drawable = require('./ui/drawable.js')();
             drawarea.init();
-
-            // drawarea.addComponent(drawable.create("or"));
         },
 
-        addComponent: function(component_type) {
-            // var drawarea = require('./ui/drawarea.js')(container_id, config);
-
-            drawarea.addComponent(component_type);
+        addComponent: function(component_name, component_group) {
+            drawarea.addComponent(component_name, component_group);
         }
     };
 };
-},{"./ui/drawarea.js":5}],3:[function(require,module,exports){
+},{"./ui/drawarea.js":13}],3:[function(require,module,exports){
 /**
  * @module Drawable
  *
@@ -73,16 +67,10 @@ module.exports = function () {
         utils.whiteListObject(drawable_default, drawable_config);
     }
 
-    function create (drawable_type) {
-        var drawable;
+    function create (drawable_name, drawable_group) {
 
-        switch (drawable_type) {
-            case "or":
-                drawable = require('./drawables/logic/or.js');
-                break;
-            default:
-                break;
-        }
+        var drawables_list = require('./drawables/drawables_list.js');
+        var drawable = drawables_list[drawable_group][drawable_name];
 
         setDrawableConfig(drawable.config);
 
@@ -97,7 +85,156 @@ module.exports = function () {
         create: create
     }
 }
-},{"../utils.js":7,"./drawables/logic/or.js":4}],4:[function(require,module,exports){
+},{"../utils.js":15,"./drawables/drawables_list.js":4}],4:[function(require,module,exports){
+/**
+ * List of all available drawable components organized by groups.
+ */
+module.exports = {
+    logic: {
+        or: require('./logic/or.js'),
+        nor: require('./logic/nor.js'),
+        xor: require('./logic/xor.js'),
+        xnor: require('./logic/xnor.js'),
+        not: require('./logic/not.js'),
+        and: require('./logic/and.js'),
+        nand: require('./logic/nand.js'),
+        buffer: require('./logic/buffer.js')
+    }
+}
+},{"./logic/and.js":5,"./logic/buffer.js":6,"./logic/nand.js":7,"./logic/nor.js":8,"./logic/not.js":9,"./logic/or.js":10,"./logic/xnor.js":11,"./logic/xor.js":12}],5:[function(require,module,exports){
+/**
+ * @module And
+ *
+ * Represents the AND logic gate.
+ *
+ * @return {Object} Public properties and methods.
+ */
+module.exports = (function () {
+
+    return {
+        id: "AND_gate",
+
+        config: {
+            size: { width: 100, height: 50 },
+            image: "./assets/imgs/AND_ANSI.svg",
+            endpoints: [
+                { anchor: [0.02, 0.30, -1, 0, 0, 0] },
+                { anchor: [0.02, 0.70, -1, 0, 0, 0] },
+                { anchor: [0.98, 0.5, 1, 0, 0, 0] },
+            ]
+        },
+
+        logic: ""
+    }
+
+})();
+},{}],6:[function(require,module,exports){
+/**
+ * @module Buffer
+ *
+ * Represents the Buffer logic gate.
+ *
+ * @return {Object} Public properties and methods.
+ */
+module.exports = (function () {
+
+    return {
+        id: "Buffer_gate",
+
+        config: {
+            size: { width: 100, height: 50 },
+            image: "./assets/imgs/Buffer_ANSI.svg",
+            endpoints: [
+                { anchor: [0.02, 0.5, -1, 0, 0, 0] },
+                { anchor: [0.98, 0.5, 1, 0, 0, 0] },
+            ]
+        },
+
+        logic: ""
+    }
+
+})();
+},{}],7:[function(require,module,exports){
+/**
+ * @module Nand
+ *
+ * Represents the NAND logic gate.
+ *
+ * @return {Object} Public properties and methods.
+ */
+module.exports = (function () {
+
+    return {
+        id: "NAND_gate",
+
+        config: {
+            size: { width: 100, height: 50 },
+            image: "./assets/imgs/NAND_ANSI.svg",
+            endpoints: [
+                { anchor: [0.02, 0.30, -1, 0, 0, 0] },
+                { anchor: [0.02, 0.70, -1, 0, 0, 0] },
+                { anchor: [0.98, 0.5, 1, 0, 0, 0] },
+            ]
+        },
+
+        logic: ""
+    }
+
+})();
+},{}],8:[function(require,module,exports){
+/**
+ * @module Nor
+ *
+ * Represents the NOR logic gate.
+ *
+ * @return {Object} Public properties and methods.
+ */
+module.exports = (function () {
+
+    return {
+        id: "NOR_gate",
+
+        config: {
+            size: { width: 100, height: 50 },
+            image: "./assets/imgs/NOR_ANSI.svg",
+            endpoints: [
+                { anchor: [0.02, 0.30, -1, 0, 0, 0] },
+                { anchor: [0.02, 0.70, -1, 0, 0, 0] },
+                { anchor: [0.98, 0.5, 1, 0, 0, 0] },
+            ]
+        },
+
+        logic: ""
+    }
+
+})();
+},{}],9:[function(require,module,exports){
+/**
+ * @module Not
+ *
+ * Represents the NOT logic gate.
+ *
+ * @return {Object} Public properties and methods.
+ */
+module.exports = (function () {
+
+    return {
+        id: "NOT_gate",
+
+        config: {
+            size: { width: 100, height: 50 },
+            image: "./assets/imgs/NOT_ANSI.svg",
+            endpoints: [
+                { anchor: [0.02, 0.5, -1, 0, 0, 0] },
+                { anchor: [0.98, 0.5, 1, 0, 0, 0] },
+            ]
+        },
+
+        logic: ""
+    }
+
+})();
+},{}],10:[function(require,module,exports){
 /**
  * @module Or
  *
@@ -114,9 +251,9 @@ module.exports = (function () {
             size: { width: 100, height: 50 },
             image: "./assets/imgs/OR_ANSI.svg",
             endpoints: [
-                { anchor: [0, 0.30, -1, 0, 0, 0] },
-                { anchor: [0, 0.70, -1, 0, 0, 0] },
-                { anchor: [1, 0.5, 1, 0, 0, 0] },
+                { anchor: [0.02, 0.30, -1, 0, 0, 0] },
+                { anchor: [0.02, 0.70, -1, 0, 0, 0] },
+                { anchor: [0.98, 0.5, 1, 0, 0, 0] },
             ]
         },
 
@@ -124,7 +261,61 @@ module.exports = (function () {
     }
 
 })();
-},{}],5:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
+/**
+ * @module Xnor
+ *
+ * Represents the XNOR logic gate.
+ *
+ * @return {Object} Public properties and methods.
+ */
+module.exports = (function () {
+
+    return {
+        id: "XNOR_gate",
+
+        config: {
+            size: { width: 100, height: 50 },
+            image: "./assets/imgs/XNOR_ANSI.svg",
+            endpoints: [
+                { anchor: [0.02, 0.30, -1, 0, 0, 0] },
+                { anchor: [0.02, 0.70, -1, 0, 0, 0] },
+                { anchor: [0.98, 0.5, 1, 0, 0, 0] },
+            ]
+        },
+
+        logic: ""
+    }
+
+})();
+},{}],12:[function(require,module,exports){
+/**
+ * @module Xor
+ *
+ * Represents the XOR logic gate.
+ *
+ * @return {Object} Public properties and methods.
+ */
+module.exports = (function () {
+
+    return {
+        id: "XOR_gate",
+
+        config: {
+            size: { width: 100, height: 50 },
+            image: "./assets/imgs/XOR_ANSI.svg",
+            endpoints: [
+                { anchor: [0.02, 0.30, -1, 0, 0, 0] },
+                { anchor: [0.02, 0.70, -1, 0, 0, 0] },
+                { anchor: [0.98, 0.5, 1, 0, 0, 0] },
+            ]
+        },
+
+        logic: ""
+    }
+
+})();
+},{}],13:[function(require,module,exports){
 /**
  * @module DrawArea
  *
@@ -195,7 +386,7 @@ module.exports = function (container_id, config) {
             Anchors: [ null, null ],
             ConnectionsDetachable: true,
             ConnectionOverlays: [],
-            Connector: "Bezier",
+            Connector: "Flowchart",
             Container: document.body,
             DoNotThrowErrors: false,
             DragOptions: { constrain: true },
@@ -246,6 +437,7 @@ module.exports = function (container_id, config) {
         container.style.width = defaultConfig.width + "px";
         container.style.height = defaultConfig.height + "px";
         container.style.overflow = "hidden";
+        container.style.padding = "none";
     }
 
     return {
@@ -260,10 +452,10 @@ module.exports = function (container_id, config) {
             initDiagrammer();
         },
 
-        addComponent: function (component_type) {
+        addComponent: function (component_name, component_group) {
             var renderer = require('./renderer.js')(container_id, diagrammer),
-                drawable = require('./drawable.js')();
-                component = drawable.create(component_type);
+                drawable = require('./drawable.js')(),
+                component = drawable.create(component_name, component_group);
 
             // Render component
             renderer.render(component.id, component.config);
@@ -273,7 +465,7 @@ module.exports = function (container_id, config) {
         }
     };
 }
-},{"../utils.js":7,"./drawable.js":3,"./renderer.js":6}],6:[function(require,module,exports){
+},{"../utils.js":15,"./drawable.js":3,"./renderer.js":14}],14:[function(require,module,exports){
 /**
  * @module Renderer
  *
@@ -308,6 +500,9 @@ module.exports = function (container_id, diagrammer) {
         element.style.width = drawable_config.size.width+"px";
         element.style.height = drawable_config.size.height+"px";
         element.style.backgroundImage = "url("+drawable_config.image+")";
+        element.style.padding = "none";
+        element.style.margin = "none";
+        element.style.border = "none";
 
         // Append to container
         container.appendChild(element);
@@ -329,7 +524,7 @@ module.exports = function (container_id, diagrammer) {
         }
     }
 }
-},{}],7:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /**
  * @module Utils
  *
