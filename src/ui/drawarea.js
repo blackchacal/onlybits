@@ -122,6 +122,18 @@ module.exports = function (container_id, config) {
         container.style.padding = "none";
     }
 
+    /**
+     * Creates a unique id for the drawable components. The id is basically the
+     * concatenation of the component main id, with a number correspondent to the
+     * element insertion order.
+     *
+     * @param  {string} component_id Drawable component main id.
+     * @return {string}              Drawable component final/effective id.
+     */
+    function uniqueId (component_id) {
+        return component_id + "_" + (components.length + 1);
+    }
+
     return {
         /**
          * Initialize DrawArea module.
@@ -137,13 +149,14 @@ module.exports = function (container_id, config) {
         addComponent: function (component_name, component_group) {
             var renderer = require('./renderer.js')(container_id, diagrammer),
                 drawable = require('./drawable.js')(),
-                component = drawable.create(component_name, component_group);
+                component = drawable.create(component_name, component_group),
+                component_id = uniqueId(component.id);
 
             // Render component
-            renderer.render(component.id, component.config);
+            renderer.render(component_id, component.config);
 
             // Add to components list.
-            components.push({ id: component.id, logic: component.logic });
+            components.push({ id: component_id, logic: component.logic });
         }
     };
 }
