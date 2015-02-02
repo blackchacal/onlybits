@@ -14,7 +14,7 @@ module.exports = (function () {
      * @param  {Object}  obj Object to check.
      * @return {Boolean}
      */
-    function isEmpty (obj) {
+    function _isEmpty (obj) {
         return Object.keys(obj).length === 0;
     }
 
@@ -27,8 +27,8 @@ module.exports = (function () {
      * @param  {Object} obj         Object to be whitelisted.
      * @return {null}
      */
-    function whiteListObject (default_obj, obj) {
-        if (typeof obj === "object" && !isEmpty(obj)) {
+    function _whiteListObject (default_obj, obj) {
+        if (typeof obj === "object" && !_isEmpty(obj)) {
             for (var prop in obj) {
                 // Check if property exist and the new value is of the same type.
                 if (default_obj.hasOwnProperty(prop) &&
@@ -36,8 +36,8 @@ module.exports = (function () {
 
                     // If property value is also an object, go recursive.
                     if (obj[prop] instanceof Object && !(obj[prop] instanceof Array)) {
-                        if (!isEmpty(obj[prop])) {
-                            whiteListObject(default_obj[prop], obj[prop]);
+                        if (!_isEmpty(obj[prop])) {
+                            _whiteListObject(default_obj[prop], obj[prop]);
                         }
                     } else {
                         default_obj[prop] = obj[prop];
@@ -51,10 +51,11 @@ module.exports = (function () {
      * Creates a new object that inherits from a prototype. Extracted from chapter
      * 6 of "Javascript - The Definitive Guide", 6th Edition from David Flanagan.
      *
+     * @private
      * @param  {Object} p Parent object.
      * @return {Object}   Child object.
      */
-    function inherit (p) {
+    function _inherit (p) {
         if (p == null) throw TypeError();
         if (Object.create)
             return Object.create(p);
@@ -66,8 +67,8 @@ module.exports = (function () {
     }
 
     return {
-        isEmpty: isEmpty,
-        whiteListObject: whiteListObject,
-        inherit: inherit
+        isEmpty: _isEmpty,
+        whiteListObject: _whiteListObject,
+        inherit: _inherit
     }
 })();

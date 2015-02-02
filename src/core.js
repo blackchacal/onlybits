@@ -10,17 +10,43 @@
  */
 module.exports = function (container_id) {
 
-    var config = {};
+    /**
+     * Configuration object.
+     *
+     * @private
+     * @type {Object}
+     */
+    var _config = {};
 
-    var drawarea = require('./ui/drawarea.js')(container_id, config);
+    /**
+     * Drawarea module instance.
+     *
+     * @private
+     * @type {Object}
+     */
+    var _drawarea = require('./ui/drawarea.js')(container_id, _config);
 
     return {
+        /**
+         * App initialization. Creates and prepares the drawing area for usage.
+         *
+         * @public
+         * @return {null}
+         */
         init: function() {
-            drawarea.init();
+            _drawarea.init();
         },
 
+        /**
+         * Adds a drawable component to the drawing area.
+         *
+         * @public
+         * @param {string} component_name  Drawable name.
+         * @param {string} component_group Drawable group.
+         * @return {null}
+         */
         addComponent: function(component_name, component_group) {
-            drawarea.addComponent(component_name, component_group);
+            _drawarea.addComponent(component_name, component_group);
         }
     };
 };

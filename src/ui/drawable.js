@@ -11,9 +11,21 @@
  */
 module.exports = function () {
 
-    var utils = require('../utils.js');
+    /**
+     * Utilities Module.
+     *
+     * @private
+     * @type {Object}
+     */
+    var _utils = require('../utils.js');
 
-    var drawable_default = {
+    /**
+     * Drawable components default rendering properties.
+     *
+     * @private
+     * @type {Object}
+     */
+    var _drawable_default = {
         size: { width: 100, height: 100 },
         position: { top: 10, left: 10 },
         image: "",
@@ -33,25 +45,36 @@ module.exports = function () {
         ]
     };
 
-    function setDrawableConfig (drawable_config) {
-        utils.whiteListObject(drawable_default, drawable_config);
-    }
-
-    function create (drawable_name, drawable_group) {
-
-        var drawables_list = require('./drawables/drawables_list.js');
-        var drawable = drawables_list[drawable_group][drawable_name];
-
-        setDrawableConfig(drawable.config);
-
-        return {
-            id: drawable.id,
-            config: drawable_default,
-            logic: drawable.logic
-        }
+    /**
+     * White lists the drawable config agains the defaults.
+     *
+     * @private
+     * @param {Object} drawable_config Drawable configuration object.
+     */
+    function _setDrawableConfig (drawable_config) {
+        _utils.whiteListObject(_drawable_default, drawable_config);
     }
 
     return {
-        create: create
+        /**
+         * Creates a drawable component based on the name and group.
+         *
+         * @public
+         * @param  {string} drawable_name  Drawable name.
+         * @param  {string} drawable_group Drawable group.
+         * @return {Object}                Drawable object.
+         */
+        create: function (drawable_name, drawable_group) {
+            var drawables_list = require('./drawables/drawables_list.js');
+            var drawable = drawables_list[drawable_group][drawable_name];
+
+            _setDrawableConfig(drawable.config);
+
+            return {
+                id: drawable.id,
+                config: _drawable_default,
+                logic: drawable.logic
+            }
+        }
     }
 }

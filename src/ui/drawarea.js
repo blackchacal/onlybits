@@ -21,7 +21,7 @@ module.exports = function (container_id, config) {
      * @private
      * @type {Object}
      */
-    var utils = require('../utils.js');
+    var _utils = require('../utils.js');
 
     /**
      * jsPlumb main container id. This is the dom element container for all jsPlumb
@@ -30,7 +30,7 @@ module.exports = function (container_id, config) {
      * @private
      * @type {string}
      */
-    var container_id = container_id;
+    var _container_id = container_id;
 
     /**
      * The main jsPlumb instance.
@@ -38,7 +38,7 @@ module.exports = function (container_id, config) {
      * @private
      * @type {Object}
      */
-    var diagrammer;
+    var _diagrammer;
 
     /**
      * List of all components inside the drawing area. Only the "objects", not the
@@ -47,7 +47,7 @@ module.exports = function (container_id, config) {
      * @private
      * @type {Array}
      */
-    var components = [];
+    var _components = [];
 
     /**
      * Default configuration for the drawing area.
@@ -55,7 +55,7 @@ module.exports = function (container_id, config) {
      * @private
      * @type {Object}
      */
-    var defaultConfig = {
+    var _defaultConfig = {
         width: 600,
         height: 600,
         grid: {
@@ -94,30 +94,31 @@ module.exports = function (container_id, config) {
 
 
     // Set configurations
-    utils.whiteListObject(defaultConfig, config);
+    _utils.whiteListObject(_defaultConfig, config);
 
     /**
      * Initialize jsPlumb and add an instance to this module.
      * @return {null}
      */
-    function initDiagrammer () {
-        diagrammer = jsPlumb.getInstance(defaultConfig.diagrammer);
-        diagrammer.setContainer(container_id);
+    function _initDiagrammer () {
+        _diagrammer = jsPlumb.getInstance(_defaultConfig.diagrammer);
+        _diagrammer.setContainer(_container_id);
     }
 
     /**
      * Set the DOM container for working area and set appropriate styles for
      * jsPlumb usage.
      *
+     * @private
      * @return {null}
      */
-    function initContainer () {
-        var container = document.getElementById(container_id);
+    function _initContainer () {
+        var container = document.getElementById(_container_id);
 
         container.style.position = "relative";
         container.style.border = "1px solid #000";
-        container.style.width = defaultConfig.width + "px";
-        container.style.height = defaultConfig.height + "px";
+        container.style.width = _defaultConfig.width + "px";
+        container.style.height = _defaultConfig.height + "px";
         container.style.overflow = "hidden";
         container.style.padding = "none";
     }
@@ -127,11 +128,12 @@ module.exports = function (container_id, config) {
      * concatenation of the component main id, with a number correspondent to the
      * element insertion order.
      *
+     * @private
      * @param  {string} component_id Drawable component main id.
      * @return {string}              Drawable component final/effective id.
      */
-    function uniqueId (component_id) {
-        return component_id + "_" + (components.length + 1);
+    function _uniqueId (component_id) {
+        return component_id + "_" + (_components.length + 1);
     }
 
     return {
@@ -142,21 +144,30 @@ module.exports = function (container_id, config) {
          * @return {null}
          */
         init: function () {
-            initContainer();
-            initDiagrammer();
+            _initContainer();
+            _initDiagrammer();
         },
 
+        /**
+         * Adds a drawable component to the drawing area, by rendering it and saving,
+         * its data on an internal array.
+         *
+         * @public
+         * @param {string} component_name  Drawable component name.
+         * @param {string} component_group Drawable component group.
+         * @return {null}
+         */
         addComponent: function (component_name, component_group) {
-            var renderer = require('./renderer.js')(container_id, diagrammer),
+            var renderer = require('./renderer.js')(_container_id, _diagrammer),
                 drawable = require('./drawable.js')(),
                 component = drawable.create(component_name, component_group),
-                component_id = uniqueId(component.id);
+                component_id = _uniqueId(component.id);
 
             // Render component
             renderer.render(component_id, component.config);
 
             // Add to components list.
-            components.push({ id: component_id, logic: component.logic });
+            _components.push({ id: component_id, logic: component.logic });
         }
     };
 }

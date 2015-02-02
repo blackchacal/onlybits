@@ -10,9 +10,21 @@
  */
 module.exports = function (container_id, diagrammer) {
 
-    var diagrammer = diagrammer;
+    /**
+     * Diagrammer instance.
+     *
+     * @private
+     * @type {Object}
+     */
+    var _diagrammer = diagrammer;
 
-    var endpoint_options = {
+    /**
+     * Drawable endpoint options. Its used on all drawable endpoints.
+     *
+     * @private
+     * @type {Object}
+     */
+    var _endpoint_options = {
         isSource: true,
         isTarget: true,
         maxConnections: -1,
@@ -20,7 +32,15 @@ module.exports = function (container_id, diagrammer) {
         scope: "logic_connection"
     }
 
-    function createDomElement (drawable_id, drawable_config) {
+    /**
+     * Creates drawable element on DOM tree and sets the necessary styles to
+     * interact properly with the diagrammer.
+     *
+     * @param  {string} drawable_id     Drawable effective id.
+     * @param  {Object} drawable_config Drawable configuration object.
+     * @return {null}
+     */
+    function _createDomElement (drawable_id, drawable_config) {
         var container = document.getElementById(container_id);
 
         // Create element
@@ -40,19 +60,42 @@ module.exports = function (container_id, diagrammer) {
         container.appendChild(element);
     }
 
-    function createEndpoints (drawable_id, drawable_config) {
-        diagrammer.addEndpoints(drawable_id, drawable_config.endpoints, endpoint_options);
+    /**
+     * Create all the endpoints for the drawable component.
+     *
+     * @private
+     * @param  {string} drawable_id     Drawable effective id.
+     * @param  {string} drawable_config Drawable configuration object.
+     * @return {null}
+     */
+    function _createEndpoints (drawable_id, drawable_config) {
+        _diagrammer.addEndpoints(drawable_id, drawable_config.endpoints, _endpoint_options);
     }
 
-    function setElementDraggable (drawable_id) {
-        diagrammer.draggable(drawable_id);
+    /**
+     * Add draggable properties to the drawable component.
+     *
+     * @private
+     * @param  {string} drawable_id Drawable effective id.
+     * @return {null}
+     */
+    function _setElementDraggable (drawable_id) {
+        _diagrammer.draggable(drawable_id);
     }
 
     return {
+        /**
+         * Render the drawable component.
+         *
+         * @public
+         * @param  {string} drawable_id     Drawable effective id.
+         * @param  {string} drawable_config Drawable configuration object.
+         * @return {null}
+         */
         render: function (drawable_id, drawable_config) {
-            createDomElement(drawable_id, drawable_config);
-            setElementDraggable(drawable_id);
-            createEndpoints(drawable_id, drawable_config);
+            _createDomElement(drawable_id, drawable_config);
+            _setElementDraggable(drawable_id);
+            _createEndpoints(drawable_id, drawable_config);
         }
     }
 }
