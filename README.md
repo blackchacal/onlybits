@@ -7,6 +7,7 @@ The aim of this project is to create a small JS app for logic circuit simulation
 ## External libraries
 
 * [jsPlumb](https://jsplumbtoolkit.com) under MIT and GPL2 licenses. ([GitHub](https://github.com/sporritt/jsplumb/))
+* [PEG.js](http://pegjs.org/) under MIT license. ([GitHub](https://github.com/pegjs/pegjs))
 
 ## License
 

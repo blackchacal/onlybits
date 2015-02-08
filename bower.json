@@ -9,6 +9,7 @@
   "main": "src/app.js",
   "license": "MIT",
   "dependencies": {
-    "jsPlumb": "git://github.com/sporritt/jsPlumb.git#1.7.2"
+    "jsPlumb": "git://github.com/sporritt/jsPlumb.git#1.7.2",
+    "pegjs": "~0.8.0"
   }
 }
