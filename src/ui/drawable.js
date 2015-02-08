@@ -65,7 +65,7 @@ module.exports = function () {
          * @return {Object}                Drawable object.
          */
         create: function (drawable_name, drawable_group) {
-            var drawables_list = require('./drawables/drawables_list.js');
+            var drawables_list = require('./drawables/drawables-list.js');
             var drawable = drawables_list[drawable_group][drawable_name];
 
             _setDrawableConfig(drawable.config);
