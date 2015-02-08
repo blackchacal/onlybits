@@ -10,6 +10,7 @@ module.exports = {
         not: require('./logic/not.js'),
         and: require('./logic/and.js'),
         nand: require('./logic/nand.js'),
-        buffer: require('./logic/buffer.js')
+        buffer: require('./logic/buffer.js'),
+        input: require('./logic/input.js')
     }
 }

@@ -51,10 +51,13 @@ module.exports = function (container_id, diagrammer) {
         element.style.left = drawable_config.position.left+"px";
         element.style.width = drawable_config.size.width+"px";
         element.style.height = drawable_config.size.height+"px";
-        element.style.backgroundImage = "url("+drawable_config.image+")";
         element.style.padding = "none";
         element.style.margin = "none";
         element.style.border = "none";
+
+        if (drawable_config.images[0] !== "") {
+            element.style.backgroundImage = "url("+drawable_config.images[0]+")";
+        }
 
         // Append to container
         container.appendChild(element);
