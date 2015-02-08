@@ -167,7 +167,11 @@ module.exports = function (container_id, config) {
             renderer.render(component_id, component.config);
 
             // Add to components list.
-            _components.push({ id: component_id, logic: component.logic });
+            _components.push({ id: component_id, logic: component.logic, connections: component.connections });
+        },
+
+        getComponents: function () {
+            return _components;
         }
     };
 }

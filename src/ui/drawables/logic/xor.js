@@ -20,7 +20,9 @@ module.exports = (function () {
             ]
         },
 
-        logic: ""
+        logic: "%1 xor %2",
+
+        connections: []
     }
 
 })();

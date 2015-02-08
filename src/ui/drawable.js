@@ -74,7 +74,8 @@ module.exports = function () {
             return {
                 id: drawable.id,
                 config: _drawable_default,
-                logic: drawable.logic
+                logic: drawable.logic,
+                connections: drawable.connections
             }
         }
     }

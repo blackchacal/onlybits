@@ -19,7 +19,9 @@ module.exports = (function () {
             ]
         },
 
-        logic: ""
+        logic: "%1",
+
+        connections: []
     }
 
 })();
