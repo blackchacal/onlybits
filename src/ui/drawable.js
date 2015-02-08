@@ -9,7 +9,7 @@
  *
  * @return {Object} Public properties and methods.
  */
-module.exports = function () {
+module.exports = (function () {
 
     /**
      * Utilities Module.
@@ -79,4 +79,4 @@ module.exports = function () {
             }
         }
     }
-}
+})();

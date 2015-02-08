@@ -159,7 +159,7 @@ module.exports = function (container_id, config) {
          */
         addComponent: function (component_name, component_group) {
             var renderer = require('./renderer.js')(_container_id, _diagrammer),
-                drawable = require('./drawable.js')(),
+                drawable = require('./drawable.js'),
                 component = drawable.create(component_name, component_group),
                 component_id = _uniqueId(component.id);
 
