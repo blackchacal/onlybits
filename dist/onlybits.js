@@ -686,7 +686,7 @@ window.OnlyBits = require('./core.js');
  * @param  {string} container_id Main container id.
  * @return {Object}              Public methods.
  */
-module.exports = function (container_id) {
+module.exports = (function () {
 
     /**
      * Configuration object.
@@ -702,7 +702,7 @@ module.exports = function (container_id) {
      * @private
      * @type {Object}
      */
-    var _drawarea = require('./ui/drawarea.js')(container_id, _config);
+    var _drawarea = require('./ui/drawarea.js');
 
     return {
         /**
@@ -711,8 +711,10 @@ module.exports = function (container_id) {
          * @public
          * @return {null}
          */
-        init: function() {
-            _drawarea.init();
+        init: function(container_id) {
+            _drawarea.init(container_id, _config);
+
+            return this;
         },
 
         /**
@@ -740,7 +742,7 @@ module.exports = function (container_id) {
             return parser.parse(expression);
         }
     };
-};
+})();
 },{"../lib/logic-parser.js":1,"./logic-expression-builder.js":4,"./ui/drawarea.js":16}],4:[function(require,module,exports){
 /**
  * @module Logic Expression Builder
@@ -1229,15 +1231,7 @@ module.exports = (function () {
  * @param  {Object} config       Main configuration.
  * @return {Object}              Public methods.
  */
-module.exports = function (container_id, config) {
-
-    /**
-     * Utilities Module.
-     *
-     * @private
-     * @type {Object}
-     */
-    var _utils = require('../utils.js');
+module.exports = (function () {
 
     /**
      * jsPlumb main container id. This is the dom element container for all jsPlumb
@@ -1246,7 +1240,7 @@ module.exports = function (container_id, config) {
      * @private
      * @type {string}
      */
-    var _container_id = container_id;
+    var _container_id;
 
     /**
      * The main jsPlumb instance.
@@ -1308,10 +1302,6 @@ module.exports = function (container_id, config) {
         }
     };
 
-
-    // Set configurations
-    _utils.whiteListObject(_defaultConfig, config);
-
     /**
      * Initialize jsPlumb and add an instance to this module.
      * @return {null}
@@ -1328,8 +1318,9 @@ module.exports = function (container_id, config) {
      * @private
      * @return {null}
      */
-    function _initContainer () {
-        var container = document.getElementById(_container_id);
+    function _initContainer (container_id) {
+        _container_id = container_id;
+        var container = document.getElementById(container_id);
 
         container.style.position = "relative";
         container.style.border = "1px solid #000";
@@ -1359,8 +1350,12 @@ module.exports = function (container_id, config) {
          * @public
          * @return {null}
          */
-        init: function () {
-            _initContainer();
+        init: function (container_id, config) {
+            var _utils = require('../utils.js');
+            // Set configurations
+            _utils.whiteListObject(_defaultConfig, config);
+
+            _initContainer(container_id);
             _initDiagrammer();
         },
 
@@ -1386,11 +1381,18 @@ module.exports = function (container_id, config) {
             _components.push({ id: component_id, logic: component.logic, connections: component.connections });
         },
 
+        /**
+         * Returns all the components.
+         *
+         * @public
+         * @return {Array} List of drawable components.
+         */
         getComponents: function () {
             return _components;
         }
     };
-}
+
+})();
 },{"../utils.js":18,"./drawable.js":5,"./renderer.js":17}],17:[function(require,module,exports){
 /**
  * @module Renderer

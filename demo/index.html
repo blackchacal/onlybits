@@ -13,8 +13,7 @@
     <script>
         jsPlumb.ready(function() {
 
-            var ob = OnlyBits("drawarea");
-            ob.init();
+            var ob = OnlyBits.init("drawarea");
 
             ob.addComponent("or", "logic");
             ob.addComponent("nor", "logic");

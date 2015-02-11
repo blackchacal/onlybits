@@ -8,7 +8,7 @@
  * @param  {string} container_id Main container id.
  * @return {Object}              Public methods.
  */
-module.exports = function (container_id) {
+module.exports = (function () {
 
     /**
      * Configuration object.
@@ -24,7 +24,7 @@ module.exports = function (container_id) {
      * @private
      * @type {Object}
      */
-    var _drawarea = require('./ui/drawarea.js')(container_id, _config);
+    var _drawarea = require('./ui/drawarea.js');
 
     return {
         /**
@@ -33,8 +33,10 @@ module.exports = function (container_id) {
          * @public
          * @return {null}
          */
-        init: function() {
-            _drawarea.init();
+        init: function(container_id) {
+            _drawarea.init(container_id, _config);
+
+            return this;
         },
 
         /**
@@ -62,4 +64,4 @@ module.exports = function (container_id) {
             return parser.parse(expression);
         }
     };
-};
+})();
