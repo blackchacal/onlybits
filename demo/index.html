@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Only Bits - Logic Circuit Simulator</title>
+</head>
+<body>
+    <h1>Only Bits - Logic Circuit Simulator</h1>
+
+    <div id="drawarea" style=""></div>
+
+    <script src="../dist/onlybits.js"></script>
+    <script src="../bower_components/jsPlumb/dist/js/dom.jsPlumb-1.7.2-min.js"></script>
+    <script>
+        jsPlumb.ready(function() {
+
+            var ob = OnlyBits("drawarea");
+            ob.init();
+
+            ob.addComponent("or", "logic");
+            ob.addComponent("nor", "logic");
+            // ob.addComponent("xnor", "logic");
+            ob.addComponent("and", "logic");
+            // ob.addComponent("nand", "logic");
+            // ob.addComponent("buffer", "logic");
+            ob.addComponent("input", "logic");
+            ob.addComponent("input", "logic");
+            ob.addComponent("input", "logic");
+            ob.addComponent("input", "logic");
+            ob.addComponent("not", "logic");
+            ob.addComponent("xor", "logic");
+            ob.addComponent("input", "logic");
+
+            // console.log(ob.createLogicExpression());
+            // console.log(ob.bool("(not false and not false)"));
+        });
+    </script>
+</body>
+</html>

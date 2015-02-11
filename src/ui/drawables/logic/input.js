@@ -13,7 +13,7 @@ module.exports = (function () {
         config: {
             size: { width: 50, height: 50 },
             input: true,
-            images: ["./assets/imgs/Input_FALSE.svg", "./assets/imgs/Input_TRUE.svg"],
+            images: ["../assets/imgs/Input_FALSE.svg", "../assets/imgs/Input_TRUE.svg"],
             endpoints: [
                 { anchor: [0.98, 0.5, 1, 0, 0, 0] }
             ]
