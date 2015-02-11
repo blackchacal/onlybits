@@ -10,6 +10,7 @@
  * @return {Object} Public properties and methods.
  */
 module.exports = (function () {
+    "use strict";
 
     /**
      * Utilities Module.

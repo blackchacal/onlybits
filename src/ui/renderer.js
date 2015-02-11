@@ -9,6 +9,7 @@
  * @return {Object}              Public methods.
  */
 module.exports = function (container_id, diagrammer) {
+    "use strict";
 
     /**
      * Diagrammer instance.

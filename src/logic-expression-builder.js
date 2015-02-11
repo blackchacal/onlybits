@@ -7,6 +7,7 @@
  * @return {Object} Public methods.
  */
 module.exports = (function () {
+    "use strict";
 
     /**
      * List of circuit components to build the logic expression. It was used the

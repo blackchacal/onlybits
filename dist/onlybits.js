@@ -687,6 +687,7 @@ window.OnlyBits = require('./core.js');
  * @return {Object}              Public methods.
  */
 module.exports = (function () {
+    "use strict";
 
     /**
      * Configuration object.
@@ -753,6 +754,7 @@ module.exports = (function () {
  * @return {Object} Public methods.
  */
 module.exports = (function () {
+    "use strict";
 
     /**
      * List of circuit components to build the logic expression. It was used the
@@ -870,6 +872,7 @@ module.exports = (function () {
  * @return {Object} Public properties and methods.
  */
 module.exports = (function () {
+    "use strict";
 
     /**
      * Utilities Module.
@@ -966,6 +969,7 @@ module.exports = {
  * @return {Object} Public properties and methods.
  */
 module.exports = (function () {
+    "use strict";
 
     return {
         id: "AND_gate",
@@ -995,6 +999,7 @@ module.exports = (function () {
  * @return {Object} Public properties and methods.
  */
 module.exports = (function () {
+    "use strict";
 
     return {
         id: "Buffer_gate",
@@ -1023,6 +1028,7 @@ module.exports = (function () {
  * @return {Object} Public properties and methods.
  */
 module.exports = (function () {
+    "use strict";
 
     return {
         id: "Input",
@@ -1051,6 +1057,7 @@ module.exports = (function () {
  * @return {Object} Public properties and methods.
  */
 module.exports = (function () {
+    "use strict";
 
     return {
         id: "NAND_gate",
@@ -1080,6 +1087,7 @@ module.exports = (function () {
  * @return {Object} Public properties and methods.
  */
 module.exports = (function () {
+    "use strict";
 
     return {
         id: "NOR_gate",
@@ -1109,6 +1117,7 @@ module.exports = (function () {
  * @return {Object} Public properties and methods.
  */
 module.exports = (function () {
+    "use strict";
 
     return {
         id: "NOT_gate",
@@ -1137,6 +1146,7 @@ module.exports = (function () {
  * @return {Object} Public properties and methods.
  */
 module.exports = (function () {
+    "use strict";
 
     return {
         id: "OR_gate",
@@ -1166,6 +1176,7 @@ module.exports = (function () {
  * @return {Object} Public properties and methods.
  */
 module.exports = (function () {
+    "use strict";
 
     return {
         id: "XNOR_gate",
@@ -1195,6 +1206,7 @@ module.exports = (function () {
  * @return {Object} Public properties and methods.
  */
 module.exports = (function () {
+    "use strict";
 
     return {
         id: "XOR_gate",
@@ -1232,6 +1244,7 @@ module.exports = (function () {
  * @return {Object}              Public methods.
  */
 module.exports = (function () {
+    "use strict";
 
     /**
      * jsPlumb main container id. This is the dom element container for all jsPlumb
@@ -1405,6 +1418,7 @@ module.exports = (function () {
  * @return {Object}              Public methods.
  */
 module.exports = function (container_id, diagrammer) {
+    "use strict";
 
     /**
      * Diagrammer instance.
@@ -1507,6 +1521,7 @@ module.exports = function (container_id, diagrammer) {
  * @return {Object} Public methods.
  */
 module.exports = (function () {
+    "use strict";
 
     /**
      * Checks if object is empty, i.e, has no properties.

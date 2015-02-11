@@ -6,6 +6,7 @@
  * @return {Object} Public properties and methods.
  */
 module.exports = (function () {
+    "use strict";
 
     return {
         id: "XOR_gate",

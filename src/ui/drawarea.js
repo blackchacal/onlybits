@@ -14,6 +14,7 @@
  * @return {Object}              Public methods.
  */
 module.exports = (function () {
+    "use strict";
 
     /**
      * jsPlumb main container id. This is the dom element container for all jsPlumb

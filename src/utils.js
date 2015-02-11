@@ -6,6 +6,7 @@
  * @return {Object} Public methods.
  */
 module.exports = (function () {
+    "use strict";
 
     /**
      * Checks if object is empty, i.e, has no properties.

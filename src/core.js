@@ -9,6 +9,7 @@
  * @return {Object}              Public methods.
  */
 module.exports = (function () {
+    "use strict";
 
     /**
      * Configuration object.
