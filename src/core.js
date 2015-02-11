@@ -47,6 +47,19 @@ module.exports = function (container_id) {
          */
         addComponent: function(component_name, component_group) {
             _drawarea.addComponent(component_name, component_group);
+        },
+
+        createLogicExpression: function () {
+            var expression_builder = require("./logic-expression-builder.js");
+            var components = _drawarea.getComponents();
+
+            return expression_builder.createExpression(components);
+        },
+
+        bool: function (expression) {
+            var parser = require("../lib/logic-parser.js");
+
+            return parser.parse(expression);
         }
     };
 };
