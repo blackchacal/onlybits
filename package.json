@@ -1,0 +1,31 @@
+{
+  "name": "onlybits",
+  "version": "0.1.0",
+  "description": "JS app for logic circuit simulations.",
+  "main": "./src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blackchacal/onlybits.git"
+  },
+  "keywords": [
+    "logic circuits simulator",
+    "logic circuits",
+    "simulator",
+    "jsPlumb"
+  ],
+  "author": "Ricardo Tonet <ribeiro.tonet@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blackchacal/onlybits/issues"
+  },
+  "homepage": "https://github.com/blackchacal/onlybits",
+  "dependencies": {
+    "rx": "^2.3.25"
+  },
+  "devDependencies": {
+    "pegjs": "^0.8.0"
+  }
+}
