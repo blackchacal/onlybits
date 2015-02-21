@@ -153,15 +153,18 @@ module.exports = (function () {
          */
         addComponent: function (component_name, component_group) {
             var renderer = require('./renderer.js')(_container_id, _diagrammer),
-                drawable = require('./drawable.js'),
-                component = drawable.create(component_name, component_group),
+                drawables = require('./drawables.js'),
+                component = drawables.load(component_name, component_group),
                 component_id = _uniqueId(component.id);
+
+            // Update component id
+            component.updateId(component_id);
 
             // Render component
             renderer.render(component_id, component.config);
 
             // Add to components list.
-            _components.push({ id: component_id, logic: component.logic, connections: component.connections });
+            _components.push(component);
         },
 
         /**
@@ -172,6 +175,10 @@ module.exports = (function () {
          */
         getComponents: function () {
             return _components;
+        },
+
+        getDiagrammer: function() {
+            return _diagrammer;
         }
     };
 
