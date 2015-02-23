@@ -26,6 +26,7 @@
     "rx": "^2.3.25"
   },
   "devDependencies": {
+    "gulp": "^3.8.11",
     "pegjs": "^0.8.0"
   }
 }
